@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "lib/drivers/led/led.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -86,23 +87,35 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  led_num_t red    = e_led_num_1;
+  led_num_t green  = e_led_num_2;
+  led_num_t yellow = e_led_num_3;
+  led_num_t blue   = e_led_num_4;
+  led_init();
+  led_enable(red);
+  led_enable(green);
+  led_enable(yellow);
+  led_enable(blue);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	dl_led_rad_led_on();
-	dl_led_green_led_on();
-	dl_led_yellow_led_on();
-	dl_led_blue_led_on();
-    HAL_Delay(1000);
-	dl_led_rad_led_off();
-	dl_led_green_led_off();
-	dl_led_yellow_led_off();
-	dl_led_blue_led_off();
-	HAL_Delay(1000);
+//	dl_led_rad_led_on();
+//	dl_led_green_led_on();
+//	dl_led_yellow_led_on();
+//	dl_led_blue_led_on();
+//    HAL_Delay(1000);
+//	dl_led_rad_led_off();
+//	dl_led_green_led_off();
+//	dl_led_yellow_led_off();
+//	dl_led_blue_led_off();
+//	HAL_Delay(1000);
+
+	led_run();
+	HAL_Delay(500);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
