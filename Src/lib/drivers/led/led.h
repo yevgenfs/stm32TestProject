@@ -32,8 +32,8 @@ typedef enum {
 }led_ctrl_t;
 
 typedef enum {
-	e_led_disable ,
-	e_led_enable
+	e_led_status_disable ,
+	e_led_status_enable
 }led_status_t;
 
 typedef enum {
@@ -51,7 +51,6 @@ typedef struct{
 	led_status_t  status;
 	led_ctrl_t    new_state;
 	led_ctrl_t    curr_state;
-
 }obj_led_t;
 
 led_err_t led_init (void);

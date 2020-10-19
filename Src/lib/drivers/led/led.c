@@ -17,7 +17,7 @@ static obj_led_t led_arr[] =
 				.port       = GPIOA,
 				.pin        = GPIO_PIN_1,
 				.num        = e_led_num_1,
-				.status     = e_led_disable,
+				.status     = e_led_status_disable,
 				.new_state  = e_led_off,
 				.curr_state = e_led_off,
 		},
@@ -25,7 +25,7 @@ static obj_led_t led_arr[] =
 		        .port       = GPIOA,
 		        .pin        = GPIO_PIN_2,
 		        .num        = e_led_num_2,
-		        .status     = e_led_disable,
+		        .status     = e_led_status_disable,
 				.new_state  = e_led_off,
 				.curr_state = e_led_off,
 		},
@@ -33,7 +33,7 @@ static obj_led_t led_arr[] =
 				.port       = GPIOA,
 				.pin        = GPIO_PIN_3,
 				.num        = e_led_num_3,
-				.status     = e_led_disable,
+				.status     = e_led_status_disable,
 				.new_state  = e_led_off,
 				.curr_state = e_led_off,
 		},
@@ -41,7 +41,7 @@ static obj_led_t led_arr[] =
 				.port       = GPIOA,
 				.pin        = GPIO_PIN_4,
 				.num        = e_led_num_4,
-		        .status     = e_led_disable,
+		        .status     = e_led_status_disable,
 		        .new_state  = e_led_off,
 				.curr_state = e_led_off,
 		},
@@ -70,7 +70,7 @@ led_err_t led_init(void) {
 led_err_t led_run(void)
 {
 	static int8_t count = 0;
-	if (led_arr[count].status != e_led_disable)
+	if (led_arr[count].status != e_led_status_disable)
 	{
 	  if (e_led_on == led_arr[count].curr_state)
 	  {
@@ -108,7 +108,7 @@ led_err_t led_enable(led_num_t e_Led_number)
 		if (led_arr[var].num == e_Led_number)
 		{
 			led_add(&led_arr[var]);
-			led_arr[var].status = e_led_enable;
+			led_arr[var].status = e_led_status_enable;
 			return e_err_ok ;
 		}
 	}
