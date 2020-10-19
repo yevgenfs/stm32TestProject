@@ -21,21 +21,26 @@
 extern "C" {
 #endif
 
-typedef enum {
-  e_err_ok,
-  e_err_not_found,
+/// @brief led_err_t enum which express leds erorrs
+typedef enum
+{
+  e_led_err_ok,
+  e_led_err_not_found,
 }led_err_t;
 
+/// @brief led_ctrl_t enum which express leds state off or on
 typedef enum {
 	e_led_off ,
 	e_led_on
 }led_ctrl_t;
 
+/// @brief led_status_t enum which express leds status disable or enable
 typedef enum {
 	e_led_status_disable ,
 	e_led_status_enable
 }led_status_t;
 
+/// @brief led_num_t enum which counts number of leds
 typedef enum {
   e_led_num_1,
   e_led_num_2,
@@ -44,6 +49,7 @@ typedef enum {
   e_led_num
 }led_num_t;
 
+/// @brief obj_led_t struct which express instance of led
 typedef struct{
 	uint32_t      port;
 	uint16_t      pin;
@@ -74,9 +80,9 @@ led_err_t led_deinit (void);
 
   @param[in] state indicate which action to perfom on or off
 
-  @return return type of error or ok if work correctly
+  @return return state of error or ok if work correctly
 */
-led_err_t led_control (led_num_t e_LedNum, led_ctrl_t type);
+led_err_t led_control (obj_led_t *objP_this, led_ctrl_t state);
 
 /**
   @brief function which init led

@@ -13,17 +13,22 @@
 #include "stm32f4xx_hal.h"
 
 #include "main.h"
+#include "lib/drivers/led/led.h"
+#include "lib/utils/queue.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-led_err_t led_run (void);
+led_err_t spinner_init (void);
 
-led_err_t led_enable (led_num_t e_LedNum);
+led_err_t spinner_run (void);
+
+led_err_t spinner_enable (led_num_t e_LedNum);
 
 led_err_t led_disable (led_num_t e_LedNum);
 
+led_err_t spinner_deinit (void);
 
 #ifdef __cplusplus
 }

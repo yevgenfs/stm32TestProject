@@ -5,36 +5,78 @@
  *      Author: yevhen.surkov
  */
 
-led_err_t led_enable(led_num_t e_Led_number)
+#include "spinner.h"
+
+static obj_led_t led_arr[] =
 {
-	for (int var = 0; var < e_led_num; var++)
-	{
-		if (led_arr[var].num == e_Led_number)
 		{
-			led_add(&led_arr[var]);
-			led_arr[var].status = e_led_status_enable;
-			return e_err_ok ;
-		}
-	}
-	return e_err_not_found;
+				.port       = GPIOA,
+				.pin        = GPIO_PIN_1,
+				.num        = e_led_num_1,
+				.status     = e_led_status_disable,
+				.new_state  = e_led_off,
+				.curr_state = e_led_off,
+		},
+		{
+		        .port       = GPIOA,
+		        .pin        = GPIO_PIN_2,
+		        .num        = e_led_num_2,
+		        .status     = e_led_status_disable,
+				.new_state  = e_led_off,
+				.curr_state = e_led_off,
+		},
+		{
+				.port       = GPIOA,
+				.pin        = GPIO_PIN_3,
+				.num        = e_led_num_3,
+				.status     = e_led_status_disable,
+				.new_state  = e_led_off,
+				.curr_state = e_led_off,
+		},
+		{
+				.port       = GPIOA,
+				.pin        = GPIO_PIN_4,
+				.num        = e_led_num_4,
+		        .status     = e_led_status_disable,
+		        .new_state  = e_led_off,
+				.curr_state = e_led_off,
+		},
+};
+
+led_err_t spinner_init (void)
+{
+	return led_init();
 }
 
-led_err_t led_disable(led_num_t e_LedNum)
+led_err_t spinner_enable(obj_led_t *objP_this)
 {
-	for (int var = 0; var < e_led_num; var++)
+	if(led_add(objP_this) == e_led_err_ok)
 	{
-		if (led_arr[var].num == e_LedNum)
-		{
-			led_remove(&led_arr[var]);
-			return e_err_ok;
-		}
+	objP_this->status = e_led_status_enable;
+    return e_led_err_ok;
 	}
-	return e_err_not_found;
+	return e_led_err_not_found;
 }
 
-led_err_t led_run(void)
+led_err_t spinner_disable(obj_led_t *objP_this)
+{
+	if(led_remove(objP_this) == e_led_err_ok)
+	{
+	objP_this->status = e_led_status_disable;
+    return e_led_err_ok;
+	}
+	return e_led_err_not_found;
+}
+
+led_err_t spinner_run(void)
 {
 	static int8_t count = 0;
+	if (led_que_check() != NULL && led_que_check().num == led_arr[count].num)
+	{
+		led_deque();
+		(led_arr[count].status == e_led_status_disable) ?
+				spinner_enable(&led_arr[count]) : spinner_disable(&led_arr[count]);
+	}
 	if (led_arr[count].status != e_led_status_disable)
 	{
 	  if (e_led_on == led_arr[count].curr_state)
@@ -57,5 +99,10 @@ led_err_t led_run(void)
     {
       count = 0;
     }
-    return e_err_ok;
+    return e_led_err_ok;
+}
+
+led_err_t spinner_deinit (void)
+{
+	return led_deinit();
 }
