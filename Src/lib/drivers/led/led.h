@@ -53,18 +53,58 @@ typedef struct{
 	led_ctrl_t    curr_state;
 }obj_led_t;
 
+/**
+  @brief function which init leds
+
+  @return return type of error or ok if work correctly
+*/
 led_err_t led_init (void);
 
+/**
+  @brief function which deinit leds
+
+  @return return type of error or ok if work correctly
+*/
 led_err_t led_deinit (void);
 
-led_err_t led_run (void);
+/**
+  @brief function which turn off led or turn on led
 
-led_err_t led_enable (led_num_t e_LedNum);
+  @param[in] objP_this instance of led which should   turn off or turn on
 
-led_err_t led_disable (led_num_t e_LedNum);
+  @param[in] state indicate which action to perfom on or off
 
+  @return return type of error or ok if work correctly
+*/
 led_err_t led_control (led_num_t e_LedNum, led_ctrl_t type);
 
+/**
+  @brief function which init led
+
+  @param[in] objP_this instance of led which should  init
+
+  @return return type of error or ok if work correctly
+*/
+led_err_t led_add(obj_led_t *objP_this);
+
+/**
+  @brief function which deinit led
+
+  @param[in] objP_this instance of led which should  deinit
+
+  @return return type of error or ok if work correctly
+*/
+led_err_t led_remove(obj_led_t *objP_this);
+
+/**
+  @brief function which change new_state of led instance
+
+  @param[in][out] objP_this instance of led which should set
+
+  @param[in] state indicate which state should set on or off
+
+  @return return type of error or ok if work correctly
+*/
 led_err_t led_set_state(obj_led_t *objP_this, led_ctrl_t state);
 
 #ifdef __cplusplus
