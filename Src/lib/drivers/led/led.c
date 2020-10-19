@@ -51,7 +51,7 @@ static led_err_t led_add(obj_led_t *objP_this) {
 	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 //	init
 	GPIO_InitStruct.Pin = objP_this->pin;
-	GPIO_InitStruct.Mode = objP_this->port;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -108,7 +108,8 @@ led_err_t led_enable(led_num_t e_Led_number)
 		if (led_arr[var].num == e_Led_number)
 		{
 			led_add(&led_arr[var]);
-			return e_err_ok;
+			led_arr[var].status = e_led_enable;
+			return e_err_ok ;
 		}
 	}
 	return e_err_not_found;
