@@ -20,13 +20,14 @@
 extern "C" {
 #endif
 
+typedef enum {
+	e_spiner_work_mode_pause,
+	e_spiner_work_mode_run,
+}spiner_work_mode;
+
 led_err_t spinner_init (void);
 
 led_err_t spinner_run (void);
-
-led_err_t spinner_enable (led_num_t e_LedNum);
-
-led_err_t led_disable (led_num_t e_LedNum);
 
 led_err_t spinner_deinit (void);
 

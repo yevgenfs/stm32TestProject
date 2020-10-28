@@ -43,12 +43,46 @@ static obj_led_t led_arr[] =
 		},
 };
 
+static spiner_work_mode work_mode = e_spiner_work_mode_run;
+
 led_err_t spinner_init (void)
 {
-	return led_init();
+	if(led_init() == e_led_err_ok)
+	{
+    return e_led_err_ok;
+	}
+	return e_led_err_not_found;
 }
 
-led_err_t spinner_enable(obj_led_t *objP_this)
+led_err_t spiner_start(void)
+{
+	work_mode = e_spiner_work_mode_run;
+	return e_led_err_ok;
+}
+
+led_err_t spiner_stop(void)
+{
+	work_mode = e_spiner_work_mode_pause;
+	return e_led_err_ok;
+}
+
+led_err_t spiner_insert_led(obj_led_t *objP_this)
+{
+	if(led_enque(objP_this) == e_que_err_ok){
+		return e_led_err_ok;
+	}
+	return e_led_err_not_found;
+}
+
+led_err_t spiner_remove_led(obj_led_t *objP_this)
+{
+	if(led_enque(objP_this) == e_que_err_ok){
+		return e_led_err_ok;
+	}
+	return e_led_err_not_found;
+}
+
+static led_err_t spinner_enable(obj_led_t *objP_this)
 {
 	if(led_add(objP_this) == e_led_err_ok)
 	{
@@ -58,7 +92,7 @@ led_err_t spinner_enable(obj_led_t *objP_this)
 	return e_led_err_not_found;
 }
 
-led_err_t spinner_disable(obj_led_t *objP_this)
+static led_err_t spinner_disable(obj_led_t *objP_this)
 {
 	if(led_remove(objP_this) == e_led_err_ok)
 	{
@@ -68,9 +102,20 @@ led_err_t spinner_disable(obj_led_t *objP_this)
 	return e_led_err_not_found;
 }
 
+led_err_t spinner_deinit (void)
+{
+	if(led_deinit() == e_led_err_ok)
+	{
+    return e_led_err_ok;
+	}
+	return e_led_err_not_found;
+}
+
 led_err_t spinner_run(void)
 {
 	static int8_t count = 0;
+	if (work_mode == e_spiner_work_mode_run)
+	{
 	if (led_que_check() != NULL && led_que_check().num == led_arr[count].num)
 	{
 		led_deque();
@@ -99,10 +144,6 @@ led_err_t spinner_run(void)
     {
       count = 0;
     }
+	}
     return e_led_err_ok;
-}
-
-led_err_t spinner_deinit (void)
-{
-	return led_deinit();
 }
