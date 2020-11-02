@@ -8,6 +8,9 @@
 #ifndef SRC_LIB_UTILS_QUEUE_H_
 #define SRC_LIB_UTILS_QUEUE_H_
 
+#include "C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\Core\Src\lib\UL\spinner.h"
+
+
 typedef enum
 {
     e_que_err_ok,
@@ -16,8 +19,6 @@ typedef enum
     e_que_err_que_NULL_enter,
 } que_err_t;
 
-<<<<<<< Updated upstream
-=======
 typedef struct
 {
     void*    P_array;
@@ -25,8 +26,7 @@ typedef struct
     uint32_t quantity;
 } queue_struct_t;
 
-que_err_t queue_create(void *P_array, uint32_t size, uint32_t quantity);
->>>>>>> Stashed changes
+que_err_t queue_create(void* P_array, uint32_t size, uint32_t quantity);
 
 que_err_t led_enque(void *objP_this);
 
