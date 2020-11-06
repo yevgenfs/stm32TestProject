@@ -47,10 +47,17 @@ typedef struct
 
 e_spinner_err_t spinner_init(void);
 
-e_spinner_err_t spinner_run(void);
-
 e_spinner_err_t spinner_deinit(void);
 
+e_spinner_err_t spiner_start(void);
+
+e_spinner_err_t spiner_stop(void);
+
+e_spinner_err_t spinner_insert_led(led_num_t e_LedNum);
+
+e_spinner_err_t spinner_remove_led(led_num_t e_LedNum);
+
+e_spinner_err_t spinner_run(void);
 #ifdef __cplusplus
 }
 #endif
