@@ -60,8 +60,7 @@ typedef struct
     uint16_t     pin;
     led_num_t    num;
     led_status_t status;
-    led_ctrl_t   new_state;
-    led_ctrl_t   curr_state;
+    led_ctrl_t   led_state;
 } obj_led_t;
 
 /**
@@ -108,7 +107,7 @@ led_err_t led_add(obj_led_t *objP_this);
 led_err_t led_remove(obj_led_t *objP_this);
 
 /**
- @brief function which change new_state of led instance
+ @brief function which change led_state of led instance
 
  @param[in][out] objP_this instance of led which should set
 
@@ -118,6 +117,13 @@ led_err_t led_remove(obj_led_t *objP_this);
  */
 led_err_t led_set_state(obj_led_t *objP_this, led_ctrl_t state);
 
+/**
+ @brief function which change led_state of led instance and call led control
+
+ @param[in][out] objP_this instance of led which should set
+
+ @return return type of error or ok if work correctly
+ */
 led_err_t led_toggle(obj_led_t *objP_this);
 
 #ifdef __cplusplus

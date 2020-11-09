@@ -9,71 +9,101 @@
 #include "stdlib.h"
 #include "string.h"
 
-static int32_t max_size = 0;
-static int32_t curent_element_position = -8;
-static int32_t last_element_position = -8;
-static queue_struct_t obj_queue;
-
-que_err_t queue_create(void* thisP_array, uint32_t size, uint32_t quantity)
+queue_err_t create_queue(queue_t *queue_this, uint32_t size)
 {
-    if(thisP_array != NULL && size != 0 && quantity != 0)
+    if (size != 0 && queue_this != NULL)
     {
+        queue_this->front = -1;
+        queue_this->rear = -1;
+        queue_this->curent_size = 0;
+        queue_this->size = size;
+        if (((queue_this->P_array = (spinner_ctrl_t*) malloc(
+                size * sizeof(spinner_ctrl_t)))) == NULL)
+        {
+            return e_que_err_que_allocation_error;
+        }
+    }
+    return e_que_err_que_NULL_enter;
 
-        max_size           = quantity * size;
-        obj_queue.P_array  = thisP_array;
-        obj_queue.size     = size;
-        obj_queue.quantity = quantity;
+}
+
+queue_err_t en_queue(queue_t *queue_this, spinner_ctrl_t *P_item)
+{
+    if (P_item != NULL && queue_this != NULL)
+    {
+        if ((queue_this->front == 0 && queue_this->rear == queue_this->size - 1)
+                || (queue_this->rear
+                        == (queue_this->front - 1) % (queue_this->size - 1)))
+        {
+            return e_que_err_que_is_full;
+        } else if (queue_this->front == -1) /* Insert First Element */
+        {
+            queue_this->front = 0;
+            queue_this->rear = 0;
+            memcpy(&queue_this->P_array[queue_this->rear], P_item,
+                    sizeof(spinner_ctrl_t));
+            queue_this->curent_size++;
+        } else if (queue_this->rear == queue_this->size - 1
+                && queue_this->front != 0)
+        {
+            queue_this->rear = 0;
+            memcpy(&queue_this->P_array[queue_this->rear], P_item,
+                    sizeof(spinner_ctrl_t));
+            queue_this->curent_size++;
+        } else
+        {
+            queue_this->rear++;
+            memcpy(&queue_this->P_array[queue_this->rear], P_item,
+                    sizeof(spinner_ctrl_t));
+            queue_this->curent_size++;
+        }
         return e_que_err_ok;
     }
     return e_que_err_que_NULL_enter;
 }
 
-que_err_t led_enque(void *objP_this)
+queue_err_t de_queue(queue_t *queue_this, spinner_ctrl_t *P_item)
 {
-    if(objP_this != NULL)
+    if (queue_this != NULL)
     {
-        if (last_element_position == (max_size - obj_queue.size))
+        if (queue_this->curent_size == 0)
         {
-            return e_que_err_que_is_full;
+            P_item = NULL;
+            return e_que_err_que_is_empty;
+        }
+        memcpy(P_item, &queue_this->P_array[queue_this->front],
+                sizeof(spinner_ctrl_t));
+        queue_this->curent_size--;
+        if (queue_this->front == queue_this->rear)
+        {
+            queue_this->curent_size = 0;
+        } else if (queue_this->front == queue_this->size - 1)
+        {
+            queue_this->front = 0;
         } else
         {
-            if (curent_element_position < 0)
-            {
-                curent_element_position = 0;
-            }
-            last_element_position += obj_queue.size;
-            memcpy((void*)(obj_queue.P_array + last_element_position), (void*)objP_this, obj_queue.size);
-            if (last_element_position == max_size)
-            {
-                last_element_position   = -8;
-            }
-            return e_que_err_ok;
+            queue_this->front++;
         }
+        return e_que_err_ok;
     }
     return e_que_err_que_NULL_enter;
 }
 
-que_err_t led_deque(void *objP_this)
+queue_err_t delete_queue(queue_t *queue_this)
 {
-
-    if (curent_element_position < 0)
+    if (queue_this != NULL)
     {
-        objP_this = NULL;
-        return e_que_err_que_is_empty;
+        free(queue_this->P_array);
+        return e_que_err_ok;
     }
-    else
-    {
-        objP_this = (obj_queue.P_array + curent_element_position);
-        if(objP_this != NULL)
-        {
-            curent_element_position += obj_queue.size;
-            if (curent_element_position > last_element_position)
-            {
-                curent_element_position = -8;
-            }
-            return e_que_err_ok;
-        }
-        return e_que_err_que_NULL_enter;
-    }
+    return e_que_err_que_NULL_enter;
 }
 
+uint32_t get_curent_size_queue(queue_t *queue_this)
+{
+    if (queue_this != NULL)
+    {
+        return queue_this->curent_size;
+    }
+    return e_que_err_que_NULL_enter;
+}

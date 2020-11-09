@@ -91,7 +91,7 @@ int main(void)
   led_num_t green  = e_led_num_2;
   led_num_t yellow = e_led_num_3;
   led_num_t blue   = e_led_num_4;
-  led_init();
+
   spinner_init();
   spinner_insert_led(e_led_num_1);
   spinner_insert_led(e_led_num_2);

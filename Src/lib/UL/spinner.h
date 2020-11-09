@@ -1,8 +1,5 @@
 /*
  * spinner.h
- *
- *  Created on: 19 жовт. 2020 р.
- *      Author: yevhen.surkov
  */
 
 #ifndef SRC_LIB_UL_SPINNER_H_
@@ -13,24 +10,35 @@
 
 #include "main.h"
 #include "C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\Core\Src\lib\drivers\led\led.h"
-#include "C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\Core\Src\lib\utils/queue.h"
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+/// @brief spinner_state_t enum which express spinner state machine
 typedef enum
 {
-    e_spiner_work_mode_pause = 0,
-    e_spiner_work_mode_run,
-} spiner_work_mode_t;
+    e_spinner_state_pause = 0,
+    e_spinner_state_run,
+    e_spinner_state_process_cmd,
+} spinner_state_t;
 
+/// @brief e_spinner_ctrl_t enum which express should led add in spinner or remove from spinner
 typedef enum
 {
-    e_spiner_ctrl_insert = 0,
-    e_spiner_ctrl_remove
-} e_spiner_ctrl_t;
+    e_spinner_ctrl_insert = 0,
+    e_spinner_ctrl_remove
+} e_spinner_ctrl_t;
 
+/// @brief spinner_ctrl_t struct which express spinner instance which save in queue
+typedef struct
+{
+    led_num_t       led;
+    e_spinner_ctrl_t cmd;
+}spinner_ctrl_t;
+
+/// @brief e_spinner_err_t enum which express spinner erorrs
 typedef enum
 {
     e_spinner_err_ok,
@@ -39,25 +47,60 @@ typedef enum
     e_spinner_err_not_add_to_queue
 } e_spinner_err_t;
 
-typedef struct
-{
-    obj_led_t       *objP_led;
-    e_spiner_ctrl_t cmd;
-} spinner_ctrl_t;
 
+/**
+ @brief function which init spinner
+
+ @return return type of error or ok if work correctly
+ */
 e_spinner_err_t spinner_init(void);
 
+/**
+ @brief function which deinit spinner
+
+ @return return type of error or ok if work correctly
+ */
 e_spinner_err_t spinner_deinit(void);
 
-e_spinner_err_t spiner_start(void);
+/**
+ @brief function which start spinner
 
-e_spinner_err_t spiner_stop(void);
+ @return return type of error or ok if work correctly
+ */
+e_spinner_err_t spinner_start(void);
 
+/**
+ @brief function which stop spinner
+
+ @return return type of error or ok if work correctly
+ */
+e_spinner_err_t spinner_stop(void);
+
+/**
+ @brief function which insert led in spinner
+
+ @param[in] e_LedNum indicate which led should insert
+
+ @return return type of error or ok if work correctly
+ */
 e_spinner_err_t spinner_insert_led(led_num_t e_LedNum);
 
+/**
+ @brief function which remove led from spinner
+
+ @param[in] e_LedNum indicate which led should remove
+
+ @return return type of error or ok if work correctly
+ */
 e_spinner_err_t spinner_remove_led(led_num_t e_LedNum);
 
+/**
+ @brief function which run spinner
+
+ @return return type of error or ok if work correctly
+ */
 e_spinner_err_t spinner_run(void);
+
 #ifdef __cplusplus
 }
 #endif
