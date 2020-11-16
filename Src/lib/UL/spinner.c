@@ -38,6 +38,8 @@ static obj_led_t led_arr[] =
         },
 };
 
+static button_t button = {GPIOA, GPIO_PIN_5, 0, cs_NO_PRESS};
+
 static spinner_state_t spinner_state = e_spinner_state_run;
 
 static queue_t queue;
@@ -46,8 +48,8 @@ static queue_t queue;
 e_spinner_err_t spinner_init(void)
 {
     return (led_init() == e_led_err_ok
-            && create_queue(&queue, 10) == e_que_err_ok) ?
-            (e_spinner_err_ok) : (e_spinner_err_not_NULL);
+            && create_queue(&queue, 10) == e_que_err_ok && button_init(&button)
+               == e_button_err_ok) ? (e_spinner_err_ok) : (e_spinner_err_not_found);
 }
 
 e_spinner_err_t spinner_start(void)
@@ -84,17 +86,31 @@ e_spinner_err_t spinner_deinit(void)
 
 e_spinner_err_t spinner_run(void)
 {
-    static int8_t count = 0;
-    static spinner_ctrl_t objL_item = {0};
+    static uint32_t       period        = 400;
+    static uint32_t       ckick         = 0;
+    static int8_t         count         = 0;
+    static spinner_ctrl_t objL_item     = {0};
+    click_status_t        button_status = cs_NO_PRESS;
+    button_handler (&button);
+    button_status = button_get_press_type(&button);
+
     switch (spinner_state)
     {
         case e_spinner_state_pause:
+            if (button_status == cs_LONG_PRESS)
+            {
+                spinner_state = e_spinner_state_run;
+            }
             break;
 
         case e_spinner_state_run:
             if (de_queue(&queue, &objL_item) == e_que_err_ok)
             {
                 spinner_state = e_spinner_state_process_cmd;
+            }
+            if (button_status == cs_LONG_PRESS)
+            {
+                spinner_state = e_spinner_state_pause;
             }
             break;
 
@@ -122,13 +138,17 @@ e_spinner_err_t spinner_run(void)
         default:
             break;
     }
-    if (led_arr[count].status != e_led_status_disable && get_curent_size_queue(&queue) == 0)
+    if(spinner_state != e_spinner_state_pause  && ((HAL_GetTick() - ckick) > period))
     {
-        led_toggle(&led_arr[count]);
-    }
-    if (count++ >= e_led_num)
-    {
-        count = 0;
+        if (led_arr[count].status != e_led_status_disable && get_curent_size_queue(&queue) == 0)
+        {
+            ckick = HAL_GetTick();
+            led_toggle(&led_arr[count]);
+        }
+        if (count++ >= e_led_num)
+        {
+             count = 0;
+        }
     }
     return e_led_err_ok;
 }

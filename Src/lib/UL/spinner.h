@@ -9,8 +9,8 @@
 #include "stm32f4xx_hal.h"
 
 #include "main.h"
-#include "C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\Core\Src\lib\drivers\led\led.h"
-
+#include "../drivers/led/led.h"
+#include "../drivers/button/button.h"
 
 #ifdef __cplusplus
 extern "C" {
