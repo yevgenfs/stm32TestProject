@@ -44,7 +44,7 @@ typedef enum
   sets the button and prepares for work
   @param[in] ptr_button pointer to button_t type which express button
 */
-button_err_t button_init (button_t *ptr_button);
+//button_err_t button_init (button_t *ptr_button);
 
 /**
   @brief checks if the button is pressed
@@ -60,6 +60,25 @@ button_err_t button_handler (button_t *ptr_button);
   @return is_button_press return type of button pressing
 */
 click_status_t button_get_press_type (button_t *ptr_button);
+
+typedef enum ButtonEvents
+{
+  e_event_unpressed = 0,
+  e_event_pressed,
+  e_event_timeout,
+} button_event_t;
+
+typedef void (*buttonCb_t)(button_event_t event);
+
+err_t button_init(void);
+
+err_t button_deinit(void);
+
+err_t button_reg_callback(buttonCb_t callback);
+
+err_t button_unreg_callback(void);
+
+void button_run(void);
 
 #ifdef __cplusplus
 }

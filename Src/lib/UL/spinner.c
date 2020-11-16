@@ -44,12 +44,26 @@ static spinner_state_t spinner_state = e_spinner_state_run;
 
 static queue_t queue;
 
+void buttonEventsCb(button_event_t event)
+{
+    switch(event)
+    {
+        // case e_event_unpressed:
+        // case e_event_pressed:
+        // case e_event_timeout:
+                // set_pause
+    }
+}
 
 e_spinner_err_t spinner_init(void)
 {
     return (led_init() == e_led_err_ok
             && create_queue(&queue, 10) == e_que_err_ok && button_init(&button)
                == e_button_err_ok) ? (e_spinner_err_ok) : (e_spinner_err_not_found);
+
+
+    button_reg_callback(buttonEventsCb);
+
 }
 
 e_spinner_err_t spinner_start(void)

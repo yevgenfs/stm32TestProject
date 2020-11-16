@@ -85,3 +85,45 @@ click_status_t button_get_press_type(button_t *ptr_button)
     return is_button_press;
 }
 
+static buttonCb_t objS_buttonCb;
+static uint32_t pressed_time;
+static int32_t timeout;
+
+err_t button_reg_callback(buttonCb_t callback)
+{
+    // error if callback is NULL
+    // error if callback is already registered 
+
+    // register callback 
+    objS_buttonCb = callback;
+}
+
+err_t button_unreg_callback(void)
+{
+    // if ...
+
+    objS_buttonCb = NULL;
+
+    // ret success
+}
+
+void button_run(void)
+{
+    // process timeouts and events
+
+
+
+    /* throw callback example 
+     * objS_buttonCb(e_event_timeout);
+     */
+}
+
+err_t button_set_timeout(uin32_t timeout_ms)
+{
+    // set timeout
+}
+
+uint32_t button_get_pressed_time(void)
+{
+    // return how much time button is pressed pressed_time
+}
