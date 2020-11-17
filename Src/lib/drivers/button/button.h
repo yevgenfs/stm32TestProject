@@ -15,51 +15,47 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-// click status select list
-typedef enum
-{
-  cs_NO_PRESS    = 0,
-  cs_SHORT_PRESS = 1,
-  cs_LONG_PRESS  = 2,
-}click_status_t;
 
 /// @brief struct which express button
 typedef struct
 {
   uint32_t       port;
   uint16_t       pin;
-  uint32_t        counter;
-  click_status_t status;
 }button_t;
 
 typedef enum
 {
     e_button_err_ok,
     e_button_err_not_found,
-    e_button_err_NULL
+    e_button_err_callback_NULL_enter,
+    e_button_err_zero_enter_to_timeout,
+    e_button_err_number_more_than_limit_set_to_timeout,
+    e_button_err_callback_exist,
+    e_button_err_callback_already_NULL
 } button_err_t;
 
-/**
-  @brief set up button
-  sets the button and prepares for work
-  @param[in] ptr_button pointer to button_t type which express button
-*/
-button_err_t button_init (button_t *ptr_button);
+typedef enum
+{
+  e_event_unpressed = 0,
+  e_event_pressed,
+  e_event_timeout,
+} button_event_t;
 
-/**
-  @brief checks if the button is pressed
-  checks whether the button is pressed if the button is pressed then increases the counter if not then decreases
-  @param[in] ptr_button pointer to button_t type which express button
-*/
-button_err_t button_handler (button_t *ptr_button);
+typedef void (*buttonCb_t)(button_event_t event);
 
-/**
-  @brief return type of button pressing
-  returns one of the pressure types listed in click_status_t
-  @param[in] ptr_button pointer to button_t type which express button
-  @return is_button_press return type of button pressing
-*/
-click_status_t button_get_press_type (button_t *ptr_button);
+button_err_t button_init(void);
+
+button_err_t button_deinit(void);
+
+button_err_t button_reg_callback(buttonCb_t callback);
+
+button_err_t button_unreg_callback(void);
+
+void button_run(void);
+
+button_err_t button_set_timeout(uint32_t timeout_ms);
+
+uint32_t button_get_pressed_time(void);
 
 #ifdef __cplusplus
 }

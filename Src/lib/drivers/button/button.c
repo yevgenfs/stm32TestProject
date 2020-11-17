@@ -5,83 +5,94 @@
  *      Author: yevhen.surkov
  */
 #include "button.h";
+#define MIN_PRESSED_TIME_BORDER 0
+#define MAX_PRESSED_TIME_BORDER 10000
 
-#define MAX_COUNTER_BORDER 300
-#define MIN_COUNTER_BORDER 0
-#define SHORT_PRESS_COUNTER_BORDER 90
-#define LONG_PRESS_COUNTER_BORDER 270
-#define DELAY_FOR_BUTTON_READ 1
+static button_t   button = {GPIOA, GPIO_PIN_5};
+static buttonCb_t objS_buttonCb ;
+static uint32_t   pressed_time_ms = 0;
+static uint32_t   timeout = 0;
 
-button_err_t button_init(button_t *ptr_button)
+button_err_t button_init(void)
 {
-    if (ptr_button != NULL)
-    {
-        GPIO_InitTypeDef GPIO_InitStruct =
-        { 0 };
-        //  init
-        GPIO_InitStruct.Pin = ptr_button->pin;
-        GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-        GPIO_InitStruct.Pull = GPIO_NOPULL;
-        GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
-        HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-        ptr_button->status = cs_NO_PRESS;
-        ptr_button->counter = MIN_COUNTER_BORDER;
-        return e_button_err_ok;
-    }
-    return e_button_err_NULL;
+    GPIO_InitTypeDef GPIO_InitStruct =
+    { 0 };
+    //  init
+    GPIO_InitStruct.Pin = button.pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    return e_button_err_ok;
 }
 
-button_err_t button_handler(button_t *ptr_button)
+button_err_t button_deinit(void)
 {
-    if (ptr_button != NULL)
-    {
-        if ((HAL_GPIO_ReadPin(ptr_button->port, ptr_button->pin))
-                && (ptr_button->counter < MAX_COUNTER_BORDER))
-        {
-            ptr_button->counter++;
-        } else if (!(HAL_GPIO_ReadPin(ptr_button->port, ptr_button->pin))
-                && (ptr_button->counter > MIN_COUNTER_BORDER))
-        {
-            ptr_button->counter--;
-        }
-        if ((ptr_button->counter > SHORT_PRESS_COUNTER_BORDER)
-                && (ptr_button->status == cs_NO_PRESS))
-        {
-            ptr_button->status = cs_SHORT_PRESS;
-        }
-        if ((ptr_button->counter > LONG_PRESS_COUNTER_BORDER))
-        {
-            ptr_button->status = cs_LONG_PRESS;
-        }
-        return e_button_err_ok;
-    }
-    return e_button_err_NULL;
+    return e_button_err_ok;
 }
 
-click_status_t button_get_press_type(button_t *ptr_button)
+
+button_err_t button_reg_callback(buttonCb_t callback)
 {
-    click_status_t is_button_press = cs_NO_PRESS;
-    if ((ptr_button->status == cs_SHORT_PRESS)
-            && (ptr_button->counter < SHORT_PRESS_COUNTER_BORDER))
+    if(callback != NULL)
     {
-        is_button_press = cs_SHORT_PRESS;
-        if (ptr_button->counter
-                <= SHORT_PRESS_COUNTER_BORDER - DELAY_FOR_BUTTON_READ)
+        if(objS_buttonCb == NULL)
         {
-            ptr_button->status = cs_NO_PRESS;
-            ptr_button->counter = MIN_COUNTER_BORDER;
+            objS_buttonCb = callback;
+            return e_button_err_ok;
         }
-    } else if ((ptr_button->status == cs_LONG_PRESS)
-            && (ptr_button->counter < LONG_PRESS_COUNTER_BORDER))
-    {
-        is_button_press = cs_LONG_PRESS;
-        if (ptr_button->counter
-                <= LONG_PRESS_COUNTER_BORDER - DELAY_FOR_BUTTON_READ)
-        {
-            ptr_button->status = cs_NO_PRESS;
-            ptr_button->counter = MIN_COUNTER_BORDER;
-        }
+        return e_button_err_callback_exist;
     }
-    return is_button_press;
+    return e_button_err_callback_NULL_enter;
+}
+
+button_err_t button_unreg_callback(void)
+{
+    if(objS_buttonCb != NULL)
+    {
+        objS_buttonCb = NULL;
+        return e_button_err_ok;
+    }
+    return e_button_err_callback_already_NULL;
+}
+
+void button_run(void)
+{
+    if (pressed_time_ms >= timeout)
+    {
+        objS_buttonCb(e_event_timeout);
+        pressed_time_ms = 0;
+    }
+    if ((HAL_GPIO_ReadPin(button.port, button.pin))
+            && (pressed_time_ms < MAX_PRESSED_TIME_BORDER))
+    {
+        pressed_time_ms++;
+        objS_buttonCb(e_event_pressed);
+    }
+    else if (!(HAL_GPIO_ReadPin(button.port, button.pin))
+            && (pressed_time_ms > MIN_PRESSED_TIME_BORDER))
+    {
+        pressed_time_ms--;
+        objS_buttonCb(e_event_unpressed);
+    }
+}
+
+button_err_t button_set_timeout(uint32_t timeout_ms)
+{
+    if (timeout_ms != 0)
+    {
+        if (timeout_ms <= MAX_PRESSED_TIME_BORDER)
+        {
+            timeout = timeout_ms;
+            return e_button_err_ok;
+        }
+        return e_button_err_number_more_than_limit_set_to_timeout;
+    }
+    return e_button_err_zero_enter_to_timeout;
+}
+
+uint32_t button_get_pressed_time(void)
+{
+    return pressed_time_ms;
 }
 
