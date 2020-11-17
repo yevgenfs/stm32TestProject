@@ -44,6 +44,10 @@ typedef enum
     e_spinner_err_ok,
     e_spinner_err_not_found,
     e_spinner_err_not_NULL,
+    e_spinner_err_led_not_init,
+    e_spinner_err_queue_not_init,
+    e_spinner_err_button_not_init,
+    e_spinner_err_button_callback_not_init,
     e_spinner_err_not_add_to_queue
 } e_spinner_err_t;
 
