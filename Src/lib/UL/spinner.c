@@ -4,7 +4,7 @@
  */
 
 #include "spinner.h"
-#include "C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\Core\Src\lib\utils/queue.h"
+#include "../utils/queue.h"
 
 static obj_led_t led_arr[] =
 {
@@ -42,12 +42,52 @@ static spinner_state_t spinner_state = e_spinner_state_run;
 
 static queue_t queue;
 
+void buttonEventsCb(button_event_t event)
+{
+    switch(event)
+    {
+        case e_event_unpressed:
+            break;
+
+        case e_event_pressed:
+            break;
+
+        case e_event_timeout:
+            (spinner_state == e_spinner_state_pause) ? (spinner_state = e_spinner_state_run)
+                    : (spinner_state = e_spinner_state_pause);
+            break;
+        default:
+            break;
+    }
+}
 
 e_spinner_err_t spinner_init(void)
 {
-    return (led_init() == e_led_err_ok
-            && create_queue(&queue, 10) == e_que_err_ok) ?
-            (e_spinner_err_ok) : (e_spinner_err_not_NULL);
+    if(led_init() != e_led_err_ok)
+    {
+        return e_spinner_err_not_init;
+    }
+
+    if(create_queue(&queue, 10) != e_que_err_ok)
+    {
+        return e_spinner_err_not_init;
+    }
+
+    if(button_init() != e_button_err_ok)
+    {
+        return e_spinner_err_not_init;
+    }
+
+    if(button_reg_callback(buttonEventsCb) != e_button_err_ok)
+    {
+        return e_spinner_err_not_init;
+    }
+
+    if(button_set_timeout(1000) != e_button_err_ok)
+    {
+        return e_spinner_err_not_init;
+    }
+    return e_spinner_err_ok;
 }
 
 e_spinner_err_t spinner_start(void)
@@ -64,9 +104,10 @@ e_spinner_err_t spinner_stop(void)
 
 e_spinner_err_t spinner_insert_led(led_num_t e_LedNum)
 {
-  spinner_ctrl_t objPL_item = { .led = e_LedNum, .cmd = e_spinner_ctrl_insert};
-  return (en_queue(&queue, &objPL_item) == e_que_err_ok) ? (e_spinner_err_ok) :
-          (e_spinner_err_not_add_to_queue);
+    spinner_ctrl_t objPL_item =
+    { .led = e_LedNum, .cmd = e_spinner_ctrl_insert };
+    return (en_queue(&queue, &objPL_item) == e_que_err_ok) ?
+            (e_spinner_err_ok) : (e_spinner_err_not_add_to_queue);
 }
 
 e_spinner_err_t spinner_remove_led(led_num_t e_LedNum)
@@ -84,8 +125,11 @@ e_spinner_err_t spinner_deinit(void)
 
 e_spinner_err_t spinner_run(void)
 {
-    static int8_t count = 0;
-    static spinner_ctrl_t objL_item = {0};
+    static uint32_t       period                 = 400;
+    static uint32_t       ms_from_last_operation = 0;
+    static int8_t         count                  = 0;
+    static spinner_ctrl_t objL_item              = {0};
+    button_run();
     switch (spinner_state)
     {
         case e_spinner_state_pause:
@@ -95,6 +139,20 @@ e_spinner_err_t spinner_run(void)
             if (de_queue(&queue, &objL_item) == e_que_err_ok)
             {
                 spinner_state = e_spinner_state_process_cmd;
+            }
+
+            if(spinner_state == e_spinner_state_run  && ((HAL_GetTick() - ms_from_last_operation) > period))
+            {
+                ms_from_last_operation = HAL_GetTick();
+                if (led_arr[count].status != e_led_status_disable)
+                {
+                    led_toggle(&led_arr[count]);
+                }
+
+                if (count++ >= e_led_num)
+                {
+                     count = 0;
+                }
             }
             break;
 
@@ -116,19 +174,16 @@ e_spinner_err_t spinner_run(void)
                     objL_item.cmd = 0;
                     spinner_state = e_spinner_state_run;
                 }
+
+                if (count++ >= e_led_num)
+                {
+                     count = 0;
+                }
             }
             break;
 
         default:
             break;
-    }
-    if (led_arr[count].status != e_led_status_disable && get_curent_size_queue(&queue) == 0)
-    {
-        led_toggle(&led_arr[count]);
-    }
-    if (count++ >= e_led_num)
-    {
-        count = 0;
     }
     return e_led_err_ok;
 }

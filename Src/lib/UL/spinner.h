@@ -9,8 +9,8 @@
 #include "stm32f4xx_hal.h"
 
 #include "main.h"
-#include "C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\Core\Src\lib\drivers\led\led.h"
-
+#include "../drivers/led/led.h"
+#include "../drivers/button/button.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,7 +43,7 @@ typedef enum
 {
     e_spinner_err_ok,
     e_spinner_err_not_found,
-    e_spinner_err_not_NULL,
+    e_spinner_err_not_init,
     e_spinner_err_not_add_to_queue
 } e_spinner_err_t;
 
