@@ -17,8 +17,8 @@ typedef enum
     e_que_err_ok,
     e_que_err_que_is_full,
     e_que_err_que_is_empty,
-    e_que_err_que_NULL_enter,
-    e_que_err_que_allocation_error,
+    e_que_err_invalid_argument,
+    e_que_err_allocation_error,
 } queue_err_t;
 
 /// @brief queue_t struct which express queue of spinner_ctrl_t

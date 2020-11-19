@@ -20,11 +20,11 @@ queue_err_t create_queue(queue_t *queue_this, uint32_t size)
         if (((queue_this->P_array = (spinner_ctrl_t*) malloc(
                 size * sizeof(spinner_ctrl_t)))) == NULL)
         {
-            return e_que_err_que_allocation_error;
+            return e_que_err_allocation_error;
         }
         return e_que_err_ok;
     }
-    return e_que_err_que_NULL_enter;
+    return e_que_err_invalid_argument;
 
 }
 
@@ -60,7 +60,7 @@ queue_err_t en_queue(queue_t *queue_this, spinner_ctrl_t *P_item)
         }
         return e_que_err_ok;
     }
-    return e_que_err_que_NULL_enter;
+    return e_que_err_invalid_argument;
 }
 
 queue_err_t de_queue(queue_t *queue_this, spinner_ctrl_t *P_item)
@@ -87,7 +87,7 @@ queue_err_t de_queue(queue_t *queue_this, spinner_ctrl_t *P_item)
         }
         return e_que_err_ok;
     }
-    return e_que_err_que_NULL_enter;
+    return e_que_err_invalid_argument;
 }
 
 queue_err_t delete_queue(queue_t *queue_this)
@@ -97,7 +97,7 @@ queue_err_t delete_queue(queue_t *queue_this)
         free(queue_this->P_array);
         return e_que_err_ok;
     }
-    return e_que_err_que_NULL_enter;
+    return e_que_err_invalid_argument;
 }
 
 uint32_t get_curent_size_queue(queue_t *queue_this)
@@ -106,5 +106,5 @@ uint32_t get_curent_size_queue(queue_t *queue_this)
     {
         return queue_this->curent_size;
     }
-    return e_que_err_que_NULL_enter;
+    return e_que_err_invalid_argument;
 }

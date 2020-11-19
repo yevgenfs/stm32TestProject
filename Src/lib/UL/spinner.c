@@ -65,23 +65,27 @@ e_spinner_err_t spinner_init(void)
 {
     if(led_init() != e_led_err_ok)
     {
-        return e_spinner_err_led_not_init;
+        return e_spinner_err_not_init;
     }
+
     if(create_queue(&queue, 10) != e_que_err_ok)
     {
-        return e_spinner_err_queue_not_init;
+        return e_spinner_err_not_init;
     }
+
     if(button_init() != e_button_err_ok)
     {
-        return e_spinner_err_button_not_init;
+        return e_spinner_err_not_init;
     }
+
     if(button_reg_callback(buttonEventsCb) != e_button_err_ok)
     {
-        return e_spinner_err_button_callback_not_init;
+        return e_spinner_err_not_init;
     }
+
     if(button_set_timeout(1000) != e_button_err_ok)
     {
-        return e_spinner_err_button_callback_not_init;
+        return e_spinner_err_not_init;
     }
     return e_spinner_err_ok;
 }
@@ -100,9 +104,10 @@ e_spinner_err_t spinner_stop(void)
 
 e_spinner_err_t spinner_insert_led(led_num_t e_LedNum)
 {
-  spinner_ctrl_t objPL_item = { .led = e_LedNum, .cmd = e_spinner_ctrl_insert};
-  return (en_queue(&queue, &objPL_item) == e_que_err_ok) ? (e_spinner_err_ok) :
-          (e_spinner_err_not_add_to_queue);
+    spinner_ctrl_t objPL_item =
+    { .led = e_LedNum, .cmd = e_spinner_ctrl_insert };
+    return (en_queue(&queue, &objPL_item) == e_que_err_ok) ?
+            (e_spinner_err_ok) : (e_spinner_err_not_add_to_queue);
 }
 
 e_spinner_err_t spinner_remove_led(led_num_t e_LedNum)
@@ -120,10 +125,10 @@ e_spinner_err_t spinner_deinit(void)
 
 e_spinner_err_t spinner_run(void)
 {
-    static uint32_t       period        = 400;
-    static uint32_t       ms_from_last_operation         = 0;
-    static int8_t         count         = 0;
-    static spinner_ctrl_t objL_item     = {0};
+    static uint32_t       period                 = 400;
+    static uint32_t       ms_from_last_operation = 0;
+    static int8_t         count                  = 0;
+    static spinner_ctrl_t objL_item              = {0};
     button_run();
     switch (spinner_state)
     {
@@ -135,6 +140,7 @@ e_spinner_err_t spinner_run(void)
             {
                 spinner_state = e_spinner_state_process_cmd;
             }
+
             if(spinner_state == e_spinner_state_run  && ((HAL_GetTick() - ms_from_last_operation) > period))
             {
                 ms_from_last_operation = HAL_GetTick();
@@ -142,6 +148,7 @@ e_spinner_err_t spinner_run(void)
                 {
                     led_toggle(&led_arr[count]);
                 }
+
                 if (count++ >= e_led_num)
                 {
                      count = 0;
@@ -167,6 +174,7 @@ e_spinner_err_t spinner_run(void)
                     objL_item.cmd = 0;
                     spinner_state = e_spinner_state_run;
                 }
+
                 if (count++ >= e_led_num)
                 {
                      count = 0;

@@ -104,7 +104,6 @@ int main(void)
   while (1)
   {
 	spinner_run();
-	HAL_Delay(5);
 
     /* USER CODE END WHILE */
 

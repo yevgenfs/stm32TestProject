@@ -43,7 +43,7 @@ button_err_t button_reg_callback(buttonCb_t callback)
         }
         return e_button_err_callback_exist;
     }
-    return e_button_err_callback_NULL_enter;
+    return e_button_err_invalid_argument;
 }
 
 button_err_t button_unreg_callback(void)
@@ -63,6 +63,7 @@ void button_run(void)
         objS_buttonCb(e_event_timeout);
         pressed_time_ms = 0;
     }
+
     if ((HAL_GPIO_ReadPin(button.port, button.pin))
             && (pressed_time_ms < MAX_PRESSED_TIME_BORDER))
     {
@@ -86,9 +87,9 @@ button_err_t button_set_timeout(uint32_t timeout_ms)
             timeout = timeout_ms;
             return e_button_err_ok;
         }
-        return e_button_err_number_more_than_limit_set_to_timeout;
+        return e_button_err_invalid_argument;
     }
-    return e_button_err_zero_enter_to_timeout;
+    return e_button_err_invalid_argument;
 }
 
 uint32_t button_get_pressed_time(void)
