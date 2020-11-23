@@ -131,10 +131,18 @@ e_spinner_err_t spinner_deinit(void)
 
 e_spinner_err_t spinner_run(void)
 {
-    static uint32_t       ms_from_last_operation = 0;
-    static int8_t         count                  = 0;
-    static spinner_ctrl_t objL_item              = {0};
-    button_run();
+    static uint32_t       ms_from_last_operation   = 0;
+    static uint32_t       ms_from_last_button_read = 0;
+    static uint32_t       button_read_period_ms    = 1;
+    static int8_t         count                    = 0;
+    static spinner_ctrl_t objL_item                = {0};
+
+    if (((HAL_GetTick() - ms_from_last_button_read) > button_read_period_ms))
+    {
+        ms_from_last_button_read = HAL_GetTick();
+        button_run();
+    }
+
     switch (spinner_state)
     {
         case e_spinner_state_pause_for_period_setup:

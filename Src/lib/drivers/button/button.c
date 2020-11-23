@@ -33,7 +33,6 @@ button_err_t button_deinit(void)
     return e_button_err_ok;
 }
 
-
 button_err_t button_reg_callback(buttonCb_t callback)
 {
     if(callback != NULL)
