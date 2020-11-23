@@ -104,5 +104,4 @@ button_err_t button_pressed_time_reset(void)
 {
     pressed_time_ms = 0;
     return e_button_err_ok;
-
 }

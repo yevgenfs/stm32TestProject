@@ -40,7 +40,6 @@ static obj_led_t led_arr[] =
 
 static spinner_state_t spinner_state = e_spinner_state_run;
 static uint32_t        period        = 400;
-
 static queue_t queue;
 
 void buttonEventsCb(button_event_t event)
