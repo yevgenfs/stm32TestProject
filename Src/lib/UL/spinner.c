@@ -39,6 +39,7 @@ static obj_led_t led_arr[] =
 };
 
 static spinner_state_t spinner_state = e_spinner_state_run;
+static uint32_t        period        = 400;
 
 static queue_t queue;
 
@@ -47,14 +48,20 @@ void buttonEventsCb(button_event_t event)
     switch(event)
     {
         case e_event_unpressed:
+            if(spinner_state == e_spinner_state_pause_for_period_setup)
+            {
+                period = button_get_pressed_time() - button_get_timeout_with_debouncer();
+                button_pressed_time_reset();
+                spinner_start();
+
+            }
             break;
 
         case e_event_pressed:
             break;
 
         case e_event_timeout:
-            (spinner_state == e_spinner_state_pause) ? (spinner_state = e_spinner_state_run)
-                    : (spinner_state = e_spinner_state_pause);
+            spinner_state = e_spinner_state_pause_for_period_setup;
             break;
         default:
             break;
@@ -125,14 +132,13 @@ e_spinner_err_t spinner_deinit(void)
 
 e_spinner_err_t spinner_run(void)
 {
-    static uint32_t       period                 = 400;
     static uint32_t       ms_from_last_operation = 0;
     static int8_t         count                  = 0;
     static spinner_ctrl_t objL_item              = {0};
     button_run();
     switch (spinner_state)
     {
-        case e_spinner_state_pause:
+        case e_spinner_state_pause_for_period_setup:
             break;
 
         case e_spinner_state_run:

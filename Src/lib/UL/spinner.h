@@ -19,7 +19,8 @@ extern "C" {
 /// @brief spinner_state_t enum which express spinner state machine
 typedef enum
 {
-    e_spinner_state_pause = 0,
+    e_spinner_state_pause_for_period_setup = 0,
+    e_spinner_state_pause,
     e_spinner_state_run,
     e_spinner_state_process_cmd,
 } spinner_state_t;

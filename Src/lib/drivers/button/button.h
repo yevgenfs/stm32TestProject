@@ -80,7 +80,7 @@ button_err_t button_unreg_callback(void);
 void button_run(void);
 
 /**
- @brief function which set  timeout for button
+ @brief function which set  timeout for button and add debouncer for this time
 
  @param[in] timeout_ms contains time in ms which should set
 
@@ -89,11 +89,25 @@ void button_run(void);
 button_err_t button_set_timeout(uint32_t timeout_ms);
 
 /**
+ @brief function which return timeout for button with debouncer
+
+ @return return  timeout for button
+ */
+uint32_t button_get_timeout_with_debouncer(void);
+
+/**
  @brief function which return how much time button press
 
  @return return how much time button press
  */
 uint32_t button_get_pressed_time(void);
+
+/**
+ @brief function which return how much time button press
+
+ @return return how much time button press
+ */
+button_err_t button_pressed_time_reset(void);
 
 #ifdef __cplusplus
 }
