@@ -133,17 +133,11 @@ e_spinner_err_t spinner_deinit(void)
 
 e_spinner_err_t spinner_run(void)
 {
-    static uint32_t       ms_from_last_operation   = 0;
-    static uint32_t       ms_from_last_button_read = 0;
-    static uint32_t       button_read_period_ms    = 1;
-    static int8_t         count                    = 0;
-    static spinner_ctrl_t objL_item                = {0};
-
-    if (((HAL_GetTick() - ms_from_last_button_read) > button_read_period_ms))
-    {
-        ms_from_last_button_read = HAL_GetTick();
-        button_run();
-    }
+    static uint32_t       ms_from_last_led_operation = 0;
+    static uint32_t       ms_from_last_button_read   = 0;
+    static uint32_t       button_read_period_ms      = 1;
+    static int8_t         count                      = 0;
+    static spinner_ctrl_t objL_item                  = {0};
 
     switch (spinner_state)
     {
@@ -156,9 +150,15 @@ e_spinner_err_t spinner_run(void)
                 spinner_state = e_spinner_state_process_cmd;
             }
 
-            if(spinner_state == e_spinner_state_run  && ((HAL_GetTick() - ms_from_last_operation) > led_period_ms))
+            if (((HAL_GetTick() - ms_from_last_button_read) > button_read_period_ms))
             {
-                ms_from_last_operation = HAL_GetTick();
+                ms_from_last_button_read = HAL_GetTick();
+                button_run();
+            }
+
+            if(spinner_state == e_spinner_state_run  && ((HAL_GetTick() - ms_from_last_led_operation) > led_period_ms))
+            {
+                ms_from_last_led_operation = HAL_GetTick();
                 if (led_arr[count].status != e_led_status_disable)
                 {
                     led_toggle(&led_arr[count]);
@@ -178,22 +178,21 @@ e_spinner_err_t spinner_run(void)
                 if (objL_item.cmd == e_spinner_ctrl_insert)
                 {
                     led_add(&led_arr[count]);
-                    objL_item.led = 0;
-                    objL_item.cmd = 0;
-                    spinner_state = e_spinner_state_run;
+
                 }
                 else if (objL_item.cmd == e_spinner_ctrl_remove)
                 {
                     led_remove(&led_arr[count]);
-                    objL_item.led = 0;
-                    objL_item.cmd = 0;
-                    spinner_state = e_spinner_state_run;
-                }
 
-                if (count++ >= e_led_num)
-                {
-                     count = 0;
                 }
+                objL_item.led = 0;
+                objL_item.cmd = 0;
+                spinner_state = e_spinner_state_run;
+            }
+
+            if (count++ >= e_led_num)
+            {
+                 count = 0;
             }
             break;
 
