@@ -5,9 +5,9 @@
  *      Author: yevhen.surkov
  */
 #include "button.h";
-#define MIN_PRESSED_TIME_BORDER 0
-#define MAX_PRESSED_TIME_BORDER 10000
-#define DEBOUNCER 50
+#define MIN_PRESSED_TIME_BORDER_MS 0
+#define MAX_PRESSED_TIME_BORDER_MS 32000
+#define DEBOUNCER_TIME_MS 50
 
 static button_t   button = {GPIOA, GPIO_PIN_5};
 static buttonCb_t objS_buttonCb ;
@@ -62,17 +62,16 @@ void button_run(void)
     if (pressed_time_ms >= timeout )
     {
         objS_buttonCb(e_event_timeout);
-        //pressed_time_ms = 0;
     }
 
     if ((HAL_GPIO_ReadPin(button.port, button.pin))
-            && (pressed_time_ms < MAX_PRESSED_TIME_BORDER))
+            && (pressed_time_ms < MAX_PRESSED_TIME_BORDER_MS))
     {
         pressed_time_ms++;
         objS_buttonCb(e_event_pressed);
     }
     else if (!(HAL_GPIO_ReadPin(button.port, button.pin))
-            && (pressed_time_ms > MIN_PRESSED_TIME_BORDER))
+            && (pressed_time_ms > MIN_PRESSED_TIME_BORDER_MS))
     {
         pressed_time_ms--;
         objS_buttonCb(e_event_unpressed);
@@ -83,7 +82,7 @@ button_err_t button_set_timeout(uint32_t timeout_ms)
 {
     if (timeout_ms > 0)
     {
-        timeout = timeout_ms + DEBOUNCER;
+        timeout = timeout_ms + DEBOUNCER_TIME_MS;
         return e_button_err_ok;
     }
     return e_button_err_invalid_argument;

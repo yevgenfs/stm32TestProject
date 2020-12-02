@@ -96,16 +96,16 @@ button_err_t button_set_timeout(uint32_t timeout_ms);
 uint32_t button_get_timeout_with_debouncer(void);
 
 /**
- @brief function which return how much time button press
+ @brief function which return how long the button is pressed
 
- @return return how much time button press
+ @return return how long the button is pressed
  */
 uint32_t button_get_pressed_time(void);
 
 /**
- @brief function which return how much time button press
+ @brief function which reset pressed_time_ms
 
- @return return how much time button press
+ @return return type of error or ok if work correctly
  */
 button_err_t button_pressed_time_reset(void);
 
