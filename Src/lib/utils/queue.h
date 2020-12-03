@@ -8,7 +8,7 @@
 #ifndef SRC_LIB_UTILS_QUEUE_H_
 #define SRC_LIB_UTILS_QUEUE_H_
 
-#include "C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\Core\Src\lib\UL\spinner.h"
+#include "../UL/spinner/spinner.h"
 
 
 /// @brief queue_err_t enum which express queue erorrs

@@ -6,8 +6,8 @@
  */
 
 #include "queue.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdlib.h>
+#include <string.h>
 
 queue_err_t create_queue(queue_t *queue_this, uint32_t size)
 {
