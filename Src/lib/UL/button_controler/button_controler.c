@@ -7,19 +7,19 @@
 #include "button_controler.h"
 #include <stdbool.h>
 
-static bool is_timeout = 0;
+static bool is_button_pass_timeout = 0;
 
 void buttonEventsCb(button_event_t event)
 {
     switch(event)
     {
         case e_event_unpressed:
-            if(is_timeout == 1)
+            if(is_button_pass_timeout == 1)
             {
                 set_spinner_period_ms(button_get_pressed_time() - button_get_timeout_with_debouncer());
                 button_pressed_time_reset();
                 spinner_start();
-                is_timeout = 0;
+                is_button_pass_timeout = 0;
             }
             break;
 
@@ -27,7 +27,7 @@ void buttonEventsCb(button_event_t event)
             break;
 
         case e_event_timeout:
-            is_timeout = 1;
+            is_button_pass_timeout = 1;
             break;
         default:
             break;
