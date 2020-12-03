@@ -105,8 +105,6 @@ e_spinner_err_t set_spinner_period_ms(uint32_t period)
 e_spinner_err_t spinner_run(void)
 {
     static uint32_t       ms_from_last_led_operation = 0;
-    static uint32_t       ms_from_last_button_read   = 0;
-    static uint32_t       button_read_period_ms      = 1;
     static int8_t         count                      = 0;
     static spinner_ctrl_t objL_item                  = {0};
 
@@ -119,12 +117,6 @@ e_spinner_err_t spinner_run(void)
             if (de_queue(&queue, &objL_item) == e_que_err_ok)
             {
                 spinner_state = e_spinner_state_process_cmd;
-            }
-
-            if (((HAL_GetTick() - ms_from_last_button_read) > button_read_period_ms))
-            {
-                ms_from_last_button_read = HAL_GetTick();
-                button_run();
             }
 
             if(spinner_state == e_spinner_state_run  && ((HAL_GetTick() - ms_from_last_led_operation) > spinner_period_ms))
