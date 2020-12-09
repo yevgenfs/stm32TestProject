@@ -97,13 +97,15 @@ int main(void)
   spinner_insert_led(e_led_num_2);
   spinner_insert_led(e_led_num_3);
   spinner_insert_led(e_led_num_4);
+  button_controler_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	spinner_run();
+    button_controler_run();
+    spinner_run();
 
     /* USER CODE END WHILE */
 

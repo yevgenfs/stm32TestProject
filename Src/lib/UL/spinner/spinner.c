@@ -4,7 +4,7 @@
  */
 
 #include "spinner.h"
-#include "../utils/queue.h"
+#include "../../utils/queue.h"
 
 static obj_led_t led_arr[] =
 {
@@ -39,35 +39,11 @@ static obj_led_t led_arr[] =
 };
 
 static spinner_state_t spinner_state = e_spinner_state_run;
-static uint32_t        led_period_ms = 400;
-static _Bool           is_timeout    = 0;
+static uint32_t        spinner_period_ms = 400;
 static queue_t         queue;
 
 
-void buttonEventsCb(button_event_t event)
-{
-    switch(event)
-    {
-        case e_event_unpressed:
-            if(is_timeout == 1)
-            {
-                led_period_ms = button_get_pressed_time() - button_get_timeout_with_debouncer();
-                button_pressed_time_reset();
-                spinner_start();
-                is_timeout = 0;
-            }
-            break;
 
-        case e_event_pressed:
-            break;
-
-        case e_event_timeout:
-            is_timeout = 1;
-            break;
-        default:
-            break;
-    }
-}
 
 e_spinner_err_t spinner_init(void)
 {
@@ -77,21 +53,6 @@ e_spinner_err_t spinner_init(void)
     }
 
     if(create_queue(&queue, 10) != e_que_err_ok)
-    {
-        return e_spinner_err_not_init;
-    }
-
-    if(button_init() != e_button_err_ok)
-    {
-        return e_spinner_err_not_init;
-    }
-
-    if(button_reg_callback(buttonEventsCb) != e_button_err_ok)
-    {
-        return e_spinner_err_not_init;
-    }
-
-    if(button_set_timeout(1000) != e_button_err_ok)
     {
         return e_spinner_err_not_init;
     }
@@ -131,11 +92,19 @@ e_spinner_err_t spinner_deinit(void)
             (e_spinner_err_ok) : (e_spinner_err_not_found);
 }
 
+e_spinner_err_t set_spinner_period_ms(uint32_t period)
+{
+    if(period > 0)
+    {
+        spinner_period_ms = period;
+        return e_spinner_err_ok;
+    }
+    return e_spinner_err_invalid_argument;
+}
+
 e_spinner_err_t spinner_run(void)
 {
     static uint32_t       ms_from_last_led_operation = 0;
-    static uint32_t       ms_from_last_button_read   = 0;
-    static uint32_t       button_read_period_ms      = 1;
     static int8_t         count                      = 0;
     static spinner_ctrl_t objL_item                  = {0};
 
@@ -150,13 +119,7 @@ e_spinner_err_t spinner_run(void)
                 spinner_state = e_spinner_state_process_cmd;
             }
 
-            if (((HAL_GetTick() - ms_from_last_button_read) > button_read_period_ms))
-            {
-                ms_from_last_button_read = HAL_GetTick();
-                button_run();
-            }
-
-            if(spinner_state == e_spinner_state_run  && ((HAL_GetTick() - ms_from_last_led_operation) > led_period_ms))
+            if(spinner_state == e_spinner_state_run  && ((HAL_GetTick() - ms_from_last_led_operation) > spinner_period_ms))
             {
                 ms_from_last_led_operation = HAL_GetTick();
                 if (led_arr[count].status != e_led_status_disable)
