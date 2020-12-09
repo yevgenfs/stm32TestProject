@@ -105,7 +105,7 @@ int main(void)
   while (1)
   {
     button_controler_run();
-	spinner_run();
+    spinner_run();
 
     /* USER CODE END WHILE */
 
