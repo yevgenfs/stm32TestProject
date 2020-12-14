@@ -13,7 +13,7 @@ uart_err_t uart_init(obj_uart_t* objP_this)
         return e_uart_err_init_fail;
     }
 
-    objP_this->uart_handler->Instance           = &objP_this->uart_type;
+    objP_this->uart_handler->Instance           = USART2;
     objP_this->uart_handler->Init.BaudRate      = objP_this->baud_rate;
     objP_this->uart_handler->Init.WordLength    = UART_WORDLENGTH_8B;
     objP_this->uart_handler->Init.StopBits      = UART_STOPBITS_1;
