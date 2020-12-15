@@ -14,11 +14,10 @@ void buttonEventsCb(button_event_t event)
     switch(event)
     {
         case e_event_unpressed:
-            if(is_button_pass_timeout == 1)
+            if(is_button_pass_timeout == true)
             {
                 set_spinner_period_ms(button_get_pressed_time() - button_get_timeout_with_debouncer());
                 button_pressed_time_reset();
-                spinner_start();
                 is_button_pass_timeout = false;
             }
             break;

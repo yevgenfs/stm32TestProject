@@ -19,11 +19,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "lib/drivers/led/led.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "lib/UL/spinner/spinner.h"
+#include "lib/UL/button_controler/button_controler.h"
+#include "lib/drivers/uart/uart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,6 +42,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 
@@ -49,6 +51,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -86,7 +89,16 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+
+  obj_uart_t uart =
+  {
+         .uart_handler = &huart2,
+         .baud_rate    = 9600,
+         .uart_type    = USART2,
+  };
+
   led_num_t red    = e_led_num_1;
   led_num_t green  = e_led_num_2;
   led_num_t yellow = e_led_num_3;
@@ -98,6 +110,7 @@ int main(void)
   spinner_insert_led(e_led_num_3);
   spinner_insert_led(e_led_num_4);
   button_controler_init();
+  uart_init(&uart);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -106,6 +119,7 @@ int main(void)
   {
     button_controler_run();
     spinner_run();
+    uart_send(&uart, "hello UART\n\0");
 
     /* USER CODE END WHILE */
 
@@ -154,6 +168,28 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -164,6 +200,7 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, RAD_LED_Pin|GREEN_LED_Pin|YELLOW_LED_Pin|BLUE_LED_Pin, GPIO_PIN_RESET);
