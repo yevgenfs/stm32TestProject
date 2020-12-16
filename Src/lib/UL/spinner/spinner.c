@@ -5,6 +5,7 @@
 
 #include "spinner.h"
 #include "../../utils/queue.h"
+#include "../../UL/uart_manager/uart_manager.h"
 
 static obj_led_t led_arr[] =
 {

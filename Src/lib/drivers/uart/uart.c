@@ -19,7 +19,6 @@ uart_err_t uart_init(obj_uart_t* objP_this)
         objP_this->uart_handler->Init.Mode          = UART_MODE_TX_RX;
         objP_this->uart_handler->Init.HwFlowCtl     = UART_HWCONTROL_NONE;
         objP_this->uart_handler->Init.OverSampling  = UART_OVERSAMPLING_16;
-
         if (HAL_UART_Init(objP_this->uart_handler) != HAL_OK)
         {
           Error_Handler();
@@ -28,8 +27,6 @@ uart_err_t uart_init(obj_uart_t* objP_this)
 
         return e_uart_err_ok;
     }
-
-
 
     return e_uart_err_init_fail;
 }
