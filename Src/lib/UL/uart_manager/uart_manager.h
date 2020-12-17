@@ -40,6 +40,7 @@ typedef enum
     e_uart_manager_err_ok,
     e_uart_manager_err_not_found,
     e_uart_manager_err_not_init,
+    e_uart_manager_err_not_deinit,
     e_uart_manager_err_invalid_argument
 } e_uart_manager_err_t;
 

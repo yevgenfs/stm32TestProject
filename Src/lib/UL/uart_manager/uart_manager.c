@@ -22,20 +22,14 @@ uint8_t   message [MESSAGE_PARTS];
 
 e_uart_manager_err_t uart_manager_init()
 {
-    if(uart_init(&uart) == e_uart_err_ok)
-    {
-        return e_uart_manager_err_ok;
-    }
-    return e_uart_manager_err_not_init;
+    return(uart_init(&uart) == e_uart_err_ok) ? (e_uart_manager_err_ok)
+            : (e_uart_manager_err_not_init);
 }
 
 e_uart_manager_err_t uart_manager_deinit()
 {
-    if(uart_deinit(&uart) == e_uart_err_ok)
-    {
-        return e_uart_manager_err_ok;
-    }
-    return e_uart_manager_err_not_init;
+    return(uart_deinit(&uart) == e_uart_err_ok) ? (e_uart_manager_err_ok)
+            : (e_uart_manager_err_not_deinit);
 }
 
 e_uart_manager_err_t convert_header(led_num_t led_num)
