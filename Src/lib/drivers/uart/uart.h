@@ -23,7 +23,7 @@ typedef enum
     e_uart_err_send_fail,
     e_uart_err_busy,
     e_uart_err_timeout,
-} uart_err_t;
+} e_uart_err_t;
 
 /// @brief obj_uart_t struct which express instance of uart
 typedef struct
@@ -40,7 +40,7 @@ typedef struct
 
  @return return type of error or ok if work correctly
  */
-uart_err_t uart_init(obj_uart_t* objP_this);
+e_uart_err_t uart_init(obj_uart_t* objP_this);
 
 /**
  @brief function which deinit uart
@@ -49,7 +49,7 @@ uart_err_t uart_init(obj_uart_t* objP_this);
 
  @return return type of error or ok if work correctly
  */
-uart_err_t uart_deinit(obj_uart_t* objP_this);
+e_uart_err_t uart_deinit(obj_uart_t* objP_this);
 
 /**
  @brief function which send data to uart
@@ -60,7 +60,7 @@ uart_err_t uart_deinit(obj_uart_t* objP_this);
 
  @return return type of error or ok if work correctly
  */
-uart_err_t uart_send(obj_uart_t* objP_this, uint8_t* str);
+e_uart_err_t uart_send(obj_uart_t* objP_this, uint8_t* str);
 
 
 #ifdef __cplusplus
