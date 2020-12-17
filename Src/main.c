@@ -104,6 +104,7 @@ int main(void)
   spinner_insert_led(e_led_num_3);
   spinner_insert_led(e_led_num_4);
   button_controler_init();
+  uart_manager_init();
 
   /* USER CODE END 2 */
 

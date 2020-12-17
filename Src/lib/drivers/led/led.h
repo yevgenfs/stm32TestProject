@@ -32,8 +32,8 @@ typedef enum
 /// @brief led_ctrl_t enum which express leds state off or on
 typedef enum
 {
-    e_led_off,
-    e_led_on
+    e_led_off = 1,
+    e_led_on  = 2
 } led_ctrl_t;
 
 /// @brief led_status_t enum which express leds status disable or enable
@@ -46,10 +46,10 @@ typedef enum
 /// @brief led_num_t enum which counts number of leds
 typedef enum
 {
-    e_led_num_1,
-    e_led_num_2,
-    e_led_num_3,
-    e_led_num_4,
+    e_led_num_1 = 1,
+    e_led_num_2 = 2,
+    e_led_num_3 = 3,
+    e_led_num_4 = 4,
     e_led_num
 } led_num_t;
 

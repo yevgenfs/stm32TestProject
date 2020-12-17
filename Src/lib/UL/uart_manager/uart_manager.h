@@ -15,17 +15,19 @@
 extern "C" {
 #endif
 
+/// @brief header_t struct which express package header
 typedef struct
 {
     uint8_t led_num;
 }header_t;
 
+/// @brief payload_t struct which express package payload
 typedef struct
 {
     uint8_t led_status;
 }payload_t;
 
-
+/// @brief package_t struct which express uart package
 typedef struct
 {
     header_t  header;
@@ -42,10 +44,29 @@ typedef enum
     e_uart_manager_err_invalid_argument
 } e_uart_manager_err_t;
 
+/**
+ @brief function which init uart_manager
+
+ @return return type of error or ok if work correctly
+*/
 e_uart_manager_err_t uart_manager_init();
 
+/**
+ @brief function which deinit uart_manager
+
+ @return return type of error or ok if work correctly
+*/
 e_uart_manager_err_t uart_manager_deinit();
 
+/**
+ @brief function which insert led in spinner
+
+ @param[in] led_num indicate which led should transmit
+
+ @param[in] led_state indicate  led state (on or off)
+
+ @return return type of error or ok if work correctly
+*/
 e_uart_manager_err_t send_to_uart(led_num_t led_num, led_ctrl_t led_state);
 
 #ifdef __cplusplus
