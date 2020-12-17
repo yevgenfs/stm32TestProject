@@ -65,14 +65,17 @@ e_uart_manager_err_t send_to_uart(led_num_t led_num, led_ctrl_t led_state)
     {
         return e_uart_manager_err_invalid_argument;
     }
+
     if (convert_payload(led_state) != e_uart_manager_err_ok)
     {
         return e_uart_manager_err_invalid_argument;
     }
+
     if (convert_message() != e_uart_manager_err_ok)
     {
         return e_uart_manager_err_invalid_argument;
     }
+
     if (uart_send(&uart, message) != e_uart_err_ok)
     {
         return e_uart_manager_err_invalid_argument;

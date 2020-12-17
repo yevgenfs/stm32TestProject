@@ -32,7 +32,6 @@ typedef struct
 {
     header_t  header;
     payload_t payload;
-
 }package_t;
 
 /// @brief e_uart_manager_err_t enum which express uart_manager erorrs
