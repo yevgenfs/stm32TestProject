@@ -42,7 +42,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef huart2;
+
 
 /* USER CODE BEGIN PV */
 
@@ -92,12 +92,6 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  obj_uart_t uart =
-  {
-         .uart_handler = &huart2,
-         .baud_rate    = 9600,
-         .uart_type    = USART2,
-  };
 
   led_num_t red    = e_led_num_1;
   led_num_t green  = e_led_num_2;
@@ -110,7 +104,8 @@ int main(void)
   spinner_insert_led(e_led_num_3);
   spinner_insert_led(e_led_num_4);
   button_controler_init();
-  uart_init(&uart);
+  uart_manager_init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -119,7 +114,7 @@ int main(void)
   {
     button_controler_run();
     spinner_run();
-    uart_send(&uart, "hello UART\n\0");
+
 
     /* USER CODE END WHILE */
 

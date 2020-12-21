@@ -5,6 +5,7 @@
 
 #include "spinner.h"
 #include "../../utils/queue.h"
+#include "../../UL/uart_manager/uart_manager.h"
 
 static obj_led_t led_arr[] =
 {
@@ -125,6 +126,7 @@ e_spinner_err_t spinner_run(void)
                 if (led_arr[count].status != e_led_status_disable)
                 {
                     led_toggle(&led_arr[count]);
+                    send_to_uart(led_arr[count].num, led_arr[count].led_state);
                 }
 
                 if (count++ >= e_led_num)
@@ -153,7 +155,7 @@ e_spinner_err_t spinner_run(void)
                 spinner_state = e_spinner_state_run;
             }
 
-            if (count++ >= e_led_num)
+            if (count++ >= e_led_num - 1)
             {
                  count = 0;
             }

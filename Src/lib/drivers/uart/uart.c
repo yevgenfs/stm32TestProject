@@ -6,7 +6,7 @@
  */
 #include "uart.h"
 
-uart_err_t uart_init(obj_uart_t* objP_this)
+e_uart_err_t uart_init(obj_uart_t* objP_this)
 {
     if (objP_this != NULL && objP_this->uart_handler != NULL &&
             objP_this->baud_rate !=0)
@@ -19,7 +19,6 @@ uart_err_t uart_init(obj_uart_t* objP_this)
         objP_this->uart_handler->Init.Mode          = UART_MODE_TX_RX;
         objP_this->uart_handler->Init.HwFlowCtl     = UART_HWCONTROL_NONE;
         objP_this->uart_handler->Init.OverSampling  = UART_OVERSAMPLING_16;
-
         if (HAL_UART_Init(objP_this->uart_handler) != HAL_OK)
         {
           Error_Handler();
@@ -29,12 +28,10 @@ uart_err_t uart_init(obj_uart_t* objP_this)
         return e_uart_err_ok;
     }
 
-
-
     return e_uart_err_init_fail;
 }
 
-uart_err_t uart_deinit(obj_uart_t* objP_this)
+e_uart_err_t uart_deinit(obj_uart_t* objP_this)
 {
     if (objP_this == NULL)
     {
@@ -44,12 +41,12 @@ uart_err_t uart_deinit(obj_uart_t* objP_this)
     return e_uart_err_ok;
 }
 
-uart_err_t uart_send(obj_uart_t* objP_this, uint8_t* str)
+e_uart_err_t uart_send(obj_uart_t* objPL_this, uint8_t* str)
 {
-    if (objP_this == NULL && str == NULL
-            && objP_this->uart_handler == NULL)
+    if (objPL_this != NULL && str != NULL
+            && objPL_this->uart_handler != NULL)
     {
-        return (HAL_UART_Transmit_IT(objP_this->uart_handler, str,
+        return (HAL_UART_Transmit_IT(objPL_this->uart_handler, str,
                 strlen(str)) == HAL_OK) ? e_uart_err_ok : e_uart_err_send_fail;
     }
     return e_uart_err_send_fail;
