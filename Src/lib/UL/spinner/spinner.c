@@ -43,9 +43,6 @@ static spinner_state_t spinner_state = e_spinner_state_run;
 static uint32_t        spinner_period_ms = 400;
 static queue_t         queue;
 
-
-
-
 e_spinner_err_t spinner_init(void)
 {
     if(led_init() != e_led_err_ok)

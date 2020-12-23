@@ -76,3 +76,13 @@ e_uart_manager_err_t send_to_uart(led_num_t led_num, led_ctrl_t led_state)
     }
     return e_uart_manager_err_ok;
 }
+
+e_uart_manager_err_t receive_from_uart(uint8_t* receive_message, uint8_t length)
+{
+    if (length != 0)
+    {
+        return (uart_receive(&uart, receive_message, length) == e_uart_err_ok) ?
+                (e_uart_manager_err_ok) : (e_uart_manager_err_invalid_argument);
+    }
+    return e_uart_manager_err_invalid_argument;
+}

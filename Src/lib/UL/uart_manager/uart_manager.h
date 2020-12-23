@@ -69,6 +69,17 @@ e_uart_manager_err_t uart_manager_deinit();
 */
 e_uart_manager_err_t send_to_uart(led_num_t led_num, led_ctrl_t led_state);
 
+/**
+ @brief function which receive data  from uart
+
+ @param[out] message_buffer data which receive
+
+ @param[in] length  of input data
+
+ @return return type of error or ok if work correctly
+*/
+e_uart_manager_err_t receive_from_uart(uint8_t* receive_message, uint8_t length);
+
 #ifdef __cplusplus
 }
 #endif
