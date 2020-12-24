@@ -56,7 +56,7 @@ e_uart_err_t uart_receive(obj_uart_t* objPL_this, uint8_t* message_buffer, uint8
 {
     if (objPL_this != NULL  && objPL_this->uart_handler != NULL && length != 0)
     {
-        return (HAL_UART_Receive_IT (objPL_this->uart_handler, message_buffer, length)
+        return (HAL_UART_Receive_IT(objPL_this->uart_handler, message_buffer, length)
                 == HAL_OK) ? e_uart_err_ok : e_uart_err_receive_fail;
     }
     return e_uart_err_receive_fail;
