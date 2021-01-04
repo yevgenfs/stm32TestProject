@@ -106,6 +106,7 @@ e_spinner_err_t spinner_run(void)
     static int8_t         count                      = 0;
     static spinner_ctrl_t objL_item                  = {0};
 
+
     switch (spinner_state)
     {
         case e_spinner_state_pause:

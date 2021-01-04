@@ -19,20 +19,40 @@ extern "C" {
 typedef struct
 {
     uint8_t led_num;
-}header_t;
+}send_header_t;
 
 /// @brief payload_t struct which express package payload
 typedef struct
 {
     uint8_t led_status;
-}payload_t;
+}send_payload_t;
 
 /// @brief package_t struct which express uart package
 typedef struct
 {
-    header_t  header;
-    payload_t payload;
-}package_t;
+    send_header_t  send_header;
+    send_payload_t send_payload;
+}send_package_t;
+
+/// @brief header_t struct which express receive package header
+typedef struct
+{
+    uint8_t comand_id;
+    uint8_t length;
+}receive_header_t;
+
+/// @brief payload_t struct which express receive package payload
+typedef struct
+{
+    uint32_t period_ms;
+}receive_payload_t;
+
+/// @brief package_t struct which express receive uart package
+typedef struct
+{
+    receive_header_t  receive_header;
+    receive_payload_t receive_payload;
+}receive_package_t;
 
 /// @brief e_uart_manager_err_t enum which express uart_manager erorrs
 typedef enum
@@ -70,15 +90,11 @@ e_uart_manager_err_t uart_manager_deinit();
 e_uart_manager_err_t send_to_uart(led_num_t led_num, led_ctrl_t led_state);
 
 /**
- @brief function which receive data  from uart
-
- @param[out] message_buffer data which receive
-
- @param[in] length  of input data
+ @brief function which manage receive data from uart
 
  @return return type of error or ok if work correctly
 */
-e_uart_manager_err_t receive_from_uart(uint8_t* receive_message, uint8_t length);
+e_uart_manager_err_t uart_manager_run(void);
 
 #ifdef __cplusplus
 }

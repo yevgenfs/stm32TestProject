@@ -7,10 +7,8 @@
 #include "button_controler.h"
 #include "../../UL/uart_manager/uart_manager.h"
 #include <stdbool.h>
-#define RECEIVE_MESSAGE_LENGTH 1
 
 static bool    is_button_pass_timeout = false;
-static uint8_t receive_message[RECEIVE_MESSAGE_LENGTH];
 
 void buttonEventsCb(button_event_t event)
 {
@@ -58,23 +56,10 @@ e_button_controler_err_t button_controler_init(void)
 e_button_controler_err_t button_controler_run(void)
 {
     static uint32_t       ms_from_last_button_read   = 0;
-    static uint32_t       ms_from_last_uart_read     = 0;
     static uint32_t       button_read_period_ms      = 1;
-    static uint32_t       uart_read_period           = 100;
     if (((HAL_GetTick() - ms_from_last_button_read) > button_read_period_ms))
     {
         ms_from_last_button_read = HAL_GetTick();
         button_run();
-        if (((HAL_GetTick() - ms_from_last_uart_read) > uart_read_period))
-        {
-            ms_from_last_uart_read = HAL_GetTick();
-            if (receive_from_uart(receive_message, RECEIVE_MESSAGE_LENGTH)
-                    == e_uart_manager_err_ok && receive_message[0] != 0)
-            {
-                set_spinner_period_ms(receive_message[0] * 100);
-            }
-        }
     }
 }
-
-

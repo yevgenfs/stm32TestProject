@@ -114,6 +114,7 @@ int main(void)
   {
     button_controler_run();
     spinner_run();
+    //uart_manager_run();
 
 
     /* USER CODE END WHILE */
