@@ -203,17 +203,11 @@ void SysTick_Handler(void)
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-    if (USART2->SR & UART_IT_RXNE) {
-        isRx=1;
-    }
+
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */
-    if (isRx)
-    {
-        uart_manager_run();
-        isRx=0;
-    }
+
   /* USER CODE END USART2_IRQn 1 */
 }
 

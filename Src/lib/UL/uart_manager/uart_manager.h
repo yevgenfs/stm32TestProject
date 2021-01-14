@@ -9,7 +9,8 @@
 #define SRC_LIB_UL_UART_MANAGER_UART_MANAGER_H_
 
 #include "../../drivers/uart/uart.h"
-#include "../../UL/spinner/spinner.h"
+#include "../spinner/spinner.h"
+
 
 #ifdef __cplusplus
 extern "C" {
