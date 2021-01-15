@@ -80,7 +80,7 @@ e_uart_manager_err_t uart_manager_init();
 e_uart_manager_err_t uart_manager_deinit();
 
 /**
- @brief function which insert led in spinner
+ @brief function which send led data to uart
 
  @param[in] led_num indicate which led should transmit
 
