@@ -54,6 +54,17 @@ e_spinner_err_t spinner_init(void)
     {
         return e_spinner_err_not_init;
     }
+
+    led_num_t red    = e_led_num_1;
+    led_num_t green  = e_led_num_2;
+    led_num_t yellow = e_led_num_3;
+    led_num_t blue   = e_led_num_4;
+
+    spinner_insert_led(e_led_num_1);
+    spinner_insert_led(e_led_num_2);
+    spinner_insert_led(e_led_num_3);
+    spinner_insert_led(e_led_num_4);
+
     return e_spinner_err_ok;
 }
 
