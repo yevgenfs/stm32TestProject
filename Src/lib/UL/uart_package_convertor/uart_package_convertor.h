@@ -8,7 +8,7 @@
 #ifndef SRC_LIB_UL_UART_PACKAGE_CONVERTOR_UART_PACKAGE_CONVERTOR_H_
 #define SRC_LIB_UL_UART_PACKAGE_CONVERTOR_UART_PACKAGE_CONVERTOR_H_
 
-#include "../uart_manager/uart_manager.h"
+#include <lib/UL/io_uart/io_uart.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -4,6 +4,10 @@
 #include "lib/UL/spinner/spinner.h"
 #include "lib/UL/button_controler/button_controler.h"
 #include "lib/drivers/uart/uart.h"
+#include "lib/UL/io_generic/io_generic.h"
+#include "lib/UL/io_uart/io_uart.h"
+#include "lib/UL/io_spi/io_spi.h"
+#include "lib/UL/io_i2c/io_i2c.h"
 
 
 void SystemClock_Config(void);
@@ -16,15 +20,35 @@ int main(void)
 {
   HAL_Init();
   SystemClock_Config();
+
+  static io_generic_config_t protocol_config[] =
+  {
+          {
+                  .send_function    = send_to_uart,
+                  .run_function     = io_uart_run,
+                  .init_function    = io_uart_init,
+          },
+          {
+                  .send_function    = send_to_spi,
+                  .run_function     = io_spi_run,
+                  .init_function    = io_spi_init,
+          },
+          {
+                  .send_function    = send_to_i2c,
+                  .run_function     = io_i2c_run,
+                  .init_function    = io_i2c_init,
+          },
+  };
+
   spinner_init();
   button_controler_init();
-  uart_manager_init();
+  io_generic_init(&protocol_config[0]);
 
   while (1)
   {
     button_controler_run();
     spinner_run();
-    uart_manager_run();
+    io_generic_run();
   }
 }
 

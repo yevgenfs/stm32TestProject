@@ -3,9 +3,10 @@
  *      Author: yevhen.surkov
  */
 
+#include <lib/UL/io_uart/io_uart.h>
 #include "spinner.h"
 #include "../../utils/queue.h"
-#include "../../UL/uart_manager/uart_manager.h"
+#include "lib/UL/io_generic/io_generic.h"
 
 static obj_led_t led_arr[] =
 {
@@ -135,7 +136,8 @@ e_spinner_err_t spinner_run(void)
                 if (led_arr[count].status != e_led_status_disable)
                 {
                     led_toggle(&led_arr[count]);
-                    send_to_uart(led_arr[count].num, led_arr[count].led_state);
+                    io_generic_send(led_arr[count].num, led_arr[count].led_state);
+ //                   send_to_uart(led_arr[count].num, led_arr[count].led_state);
                 }
 
                 if (count++ >= e_led_num)

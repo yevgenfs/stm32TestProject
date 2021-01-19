@@ -4,8 +4,8 @@
  *  Created on: 2 груд. 2020 р.
  *      Author: yevhen.surkov
  */
+#include <lib/UL/io_uart/io_uart.h>
 #include "button_controler.h"
-#include "../../UL/uart_manager/uart_manager.h"
 #include <stdbool.h>
 
 static bool    is_button_pass_timeout = false;

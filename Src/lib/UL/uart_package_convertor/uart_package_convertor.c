@@ -6,6 +6,36 @@
  */
 #include "uart_package_convertor.h"
 
+#define POLY 0x8408
+
+uint16_t crc16(uint8_t *data_p, uint8_t length)
+{
+      uint8_t i;
+      uint8_t data;
+      uint16_t crc = 0xffff;
+
+      if (length == 0)
+            return (~crc);
+
+      do
+      {
+            for (i=0, data=(uint16_t)0xff & *data_p++;
+                 i < 8;
+                 i++, data >>= 1)
+            {
+                  if ((crc & 0x0001) ^ (data & 0x0001))
+                        crc = (crc >> 1) ^ POLY;
+                  else  crc >>= 1;
+            }
+      } while (--length);
+
+      crc = ~crc;
+      data = crc;
+      crc = (crc << 8) | (data >> 8 & 0xff);
+
+      return (crc);
+}
+
 e_uart_package_convertor_err_t convert_receive_package(uint8_t *receive_message, receive_package_t *receive_package, uint8_t array_size)
 {
     if (receive_message != NULL)
