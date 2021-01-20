@@ -8,7 +8,7 @@
 #ifndef SRC_LIB_UL_BUTTON_CONTROLER_BUTTON_CONTROLER_H_
 #define SRC_LIB_UL_BUTTON_CONTROLER_BUTTON_CONTROLER_H_
 
-#include "../../drivers/button/button.h"
+#include "lib/drivers/button/button.h"
 
 #ifdef __cplusplus
 extern "C" {

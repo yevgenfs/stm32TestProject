@@ -4,7 +4,6 @@
  *  Created on: 2 груд. 2020 р.
  *      Author: yevhen.surkov
  */
-#include <lib/UL/io_uart/io_uart.h>
 #include "button_controler.h"
 #include <stdbool.h>
 

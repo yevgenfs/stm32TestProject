@@ -4,10 +4,10 @@
 #include "lib/UL/spinner/spinner.h"
 #include "lib/UL/button_controler/button_controler.h"
 #include "lib/drivers/uart/uart.h"
-#include "lib/UL/io_generic/io_generic.h"
-#include "lib/UL/io_uart/io_uart.h"
-#include "lib/UL/io_spi/io_spi.h"
-#include "lib/UL/io_i2c/io_i2c.h"
+#include "lib/UL/io/io_generic/io_generic.h"
+#include "lib/UL/io/io_uart/io_uart.h"
+#include "lib/UL/io/io_spi/io_spi.h"
+#include "lib/UL/io/io_i2c/io_i2c.h"
 
 
 void SystemClock_Config(void);
