@@ -9,20 +9,20 @@
 
 e_io_spi_err_t io_spi_init()
 {
-    return e_io_spi_err_ok;
+    return e_io_spi_err_not_impemented;
 }
 
 e_io_spi_err_t io_spi_deinit()
 {
-    return e_io_spi_err_ok;
+    return e_io_spi_err_not_impemented;
 }
 
 e_io_spi_err_t send_to_spi(led_num_t led_num, led_ctrl_t led_state)
 {
-    return e_io_spi_err_ok;
+    return e_io_spi_err_not_impemented;
 }
 
 e_io_spi_err_t io_spi_run(void)
 {
-    return e_io_spi_err_ok;
+    return e_io_spi_err_not_impemented;
 }

@@ -21,6 +21,7 @@ typedef enum
     e_io_i2c_err_not_found,
     e_io_i2c_err_not_init,
     e_io_i2c_err_not_deinit,
+    e_io_i2c_err_not_impemented,
     e_io_i2c_err_invalid_argument
 } e_io_i2c_err_t;
 
