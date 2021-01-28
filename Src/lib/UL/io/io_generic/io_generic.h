@@ -28,8 +28,11 @@ typedef enum
 typedef struct
 {
     void (*send_function)(led_num_t led_num, led_ctrl_t led_state);
+    void (*receive_function)(led_num_t led_num, led_ctrl_t led_state);
     void (*run_function)();
     void (*init_function)();
+    void (*convert_from_function)(void* ptr, size);
+    void (*convert_to_function)(void* ptr, size);
 } io_generic_config_t;
 
 /**

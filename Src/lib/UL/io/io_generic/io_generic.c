@@ -12,17 +12,39 @@
 
 io_generic_config_t objS_conf = {0};
 
-e_io_generic_err_t io_generic_init(io_generic_config_t* objPL_conf)
+e_io_generic_err_t io_generic_init(void)
 {
+    // if (objPL_conf == NULL)
+    // {
+    //     return e_io_generic_err_not_init;
+    // }
+
+    // 1. Mandatory
+    if (objPL_conf != NULL && objPL_conf->send_function)
+    {
+        objS_conf.send_function = objPL_conf->send_function;
+    }
+
     if (objPL_conf != NULL && objPL_conf->send_function != NULL
             && objPL_conf->run_function != NULL && objPL_conf->init_function != NULL)
     {
-        objS_conf.send_function = objPL_conf->send_function;
         objS_conf.run_function = objPL_conf->run_function;
         objS_conf.init_function = objPL_conf->init_function;
         objS_conf.init_function();
         return e_io_generic_err_ok;
     }
+
+    // 2. Optionaly
+    if (objPL_conf != NULL && objPL_conf->send_function != NULL
+            && objPL_conf->run_function != NULL && objPL_conf->init_function != NULL)
+    {
+        objS_conf.run_function = objPL_conf->run_function;
+        objS_conf.init_function = objPL_conf->init_function;
+        objS_conf.init_function();
+        return e_io_generic_err_ok;
+    }
+
+
     return e_io_generic_err_not_init;
 }
 

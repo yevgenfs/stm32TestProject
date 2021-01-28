@@ -55,15 +55,10 @@ e_spinner_err_t spinner_init(void)
         return e_spinner_err_not_init;
     }
 
-    led_num_t red    = e_led_num_1;
-    led_num_t green  = e_led_num_2;
-    led_num_t yellow = e_led_num_3;
-    led_num_t blue   = e_led_num_4;
-
-    spinner_insert_led(red);
-    spinner_insert_led(green);
-    spinner_insert_led(yellow);
-    spinner_insert_led(blue);
+    spinner_insert_led(e_led_num_1);
+    spinner_insert_led(e_led_num_2);
+    spinner_insert_led(e_led_num_3);
+    spinner_insert_led(e_led_num_4);
 
     return e_spinner_err_ok;
 }
@@ -82,8 +77,8 @@ e_spinner_err_t spinner_stop(void)
 
 e_spinner_err_t spinner_insert_led(led_num_t e_LedNum)
 {
-    spinner_ctrl_t objPL_item =
-    { .led = e_LedNum, .cmd = e_spinner_ctrl_insert };
+    spinner_ctrl_t objPL_item = { e_LedNum, e_spinner_ctrl_insert };
+
     return (en_queue(&queue, &objPL_item) == e_que_err_ok) ?
             (e_spinner_err_ok) : (e_spinner_err_not_add_to_queue);
 }
@@ -101,7 +96,7 @@ e_spinner_err_t spinner_deinit(void)
             (e_spinner_err_ok) : (e_spinner_err_not_found);
 }
 
-e_spinner_err_t set_spinner_period_ms(uint32_t period)
+e_spinner_err_t spinner_set_period_ms(uint32_t period)
 {
     if(period > 0)
     {
@@ -121,6 +116,7 @@ e_spinner_err_t spinner_run(void)
     switch (spinner_state)
     {
         case e_spinner_state_pause:
+            // Do nothing
             break;
 
         case e_spinner_state_run:
