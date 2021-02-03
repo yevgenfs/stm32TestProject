@@ -1,12 +1,12 @@
-#include "lib/UL/io/io_uart/io_uart.h"
-#include "lib/UL/uart_package_convertor/uart_package_convertor.h"
+#include "io_uart.h"
+#include "lib/drivers/uart/uart.h"
 #include <stdbool.h>
 
-#define SEND_MESSAGE_PARTS 4
-#define RECEIVE_MESSAGE_LENGTH 254
+
 
 UART_HandleTypeDef huart2;
-bool is_all_data_receive = false;
+static bool is_all_data_receive = false;
+static io_genericCb_t objS_io_genericCb;
 
 obj_uart_t uart =
 {
@@ -14,11 +14,6 @@ obj_uart_t uart =
         .baud_rate    = 9600,
         .uart_type    = USART2,
 };
-
-volatile static send_package_t    send_package;
-volatile static receive_package_t receive_package;
-volatile static uint8_t           send_message[SEND_MESSAGE_PARTS];
-volatile static uint8_t           receive_message[RECEIVE_MESSAGE_LENGTH];
 
 e_io_uart_err_t io_uart_init()
 {
@@ -32,63 +27,59 @@ e_io_uart_err_t io_uart_deinit()
             (e_io_uart_err_ok) : (e_io_uart_err_not_deinit);
 }
 
-e_io_uart_err_t send_to_uart(led_num_t led_num, led_ctrl_t led_state)
+e_io_uart_err_t send_to_uart(uint8_t *send_message, uint8_t lenght)
 {
-    if (convert_header(led_num, &send_package) != e_uart_package_convertor_err_ok)
-    {
-        return e_io_uart_err_invalid_argument;
-    }
-
-    if (convert_payload(led_state, &send_package) != e_uart_package_convertor_err_ok)
-    {
-        return e_io_uart_err_invalid_argument;
-    }
-
-    if (convert_message(send_message, send_package) != e_uart_package_convertor_err_ok)
-    {
-        return e_io_uart_err_invalid_argument;
-    }
-
-    if (uart_send(&uart, send_message) != e_uart_err_ok)
+    if (uart_send(&uart, send_message, lenght) != e_uart_err_ok)
     {
         return e_io_uart_err_invalid_argument;
     }
     return e_io_uart_err_ok;
 }
 
-e_io_uart_err_t receive_from_uart()
+e_io_uart_err_t io_uart_receive(uint8_t *receive_message, uint8_t lenght)
 {
     if (uart_receive(&uart, receive_message,
-            RECEIVE_MESSAGE_LENGTH) != e_uart_err_ok)
+            lenght) != e_uart_err_ok)
     {
         return e_io_uart_err_invalid_argument;
     }
     return e_io_uart_err_ok;
 }
 
-uint32_t get_receive_payload_period_ms()
+e_io_uart_err_t io_uart_reg_callback(io_genericCb_t callback)
 {
-    return receive_package.receive_payload.period_ms;
+    if(callback != NULL)
+    {
+        if(objS_io_genericCb == NULL)
+        {
+            objS_io_genericCb = callback;
+            return e_io_uart_err_ok;
+        }
+        return e_io_uart_err_callback_exist;
+    }
+    return e_io_uart_err_invalid_argument;
+}
+
+e_io_uart_err_t io_uart_unreg_callback(void)
+{
+    if(objS_io_genericCb != NULL)
+    {
+        objS_io_genericCb = NULL;
+        return e_io_uart_err_ok;
+    }
+    return e_io_uart_err_callback_already_NULL;
 }
 
 e_io_uart_err_t io_uart_run(void)
 {
     if (is_all_data_receive)
     {
-        if (convert_receive_package(receive_message, &receive_package,
-                RECEIVE_MESSAGE_LENGTH) == e_io_uart_err_ok)
-        {
-            set_spinner_period_ms(get_receive_payload_period_ms());
-            is_all_data_receive = false;
-        }
+        is_all_data_receive = false;
+        objS_io_genericCb(e_io_generic_event_data_received);
     }
     if (USART2->SR & UART_IT_RXNE)
     {
-        if (receive_from_uart() == e_io_uart_err_ok)
-        {
-            return e_io_uart_err_ok;
-        }
-        return e_io_uart_err_not_found;
+        objS_io_genericCb(e_io_generic_event_data_ready_to_receive);
     }
 }
 

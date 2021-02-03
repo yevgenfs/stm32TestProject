@@ -21,28 +21,9 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
 
-  static io_generic_config_t protocol_config[] =
-  {
-          {
-                  .send_function    = send_to_uart,
-                  .run_function     = io_uart_run,
-                  .init_function    = io_uart_init,
-          },
-          {
-                  .send_function    = send_to_spi,
-                  .run_function     = io_spi_run,
-                  .init_function    = io_spi_init,
-          },
-          {
-                  .send_function    = send_to_i2c,
-                  .run_function     = io_i2c_run,
-                  .init_function    = io_i2c_init,
-          },
-  };
-
   spinner_init();
   button_controler_init();
-  io_generic_init(&protocol_config[0]);
+  io_configurate();
 
   while (1)
   {

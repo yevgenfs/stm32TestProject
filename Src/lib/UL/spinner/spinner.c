@@ -40,7 +40,7 @@ static obj_led_t led_arr[] =
 };
 
 static spinner_state_t spinner_state = e_spinner_state_run;
-static uint32_t        spinner_period_ms = 400;
+static uint32_t        spinner_period_ms = 2000;
 static queue_t         queue;
 
 e_spinner_err_t spinner_init(void)

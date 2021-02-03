@@ -61,7 +61,7 @@ e_uart_err_t uart_deinit(obj_uart_t* objP_this);
 
  @return return type of error or ok if work correctly
 */
-e_uart_err_t uart_send(obj_uart_t* objPL_this, uint8_t* str);
+e_uart_err_t uart_send(obj_uart_t* objPL_this, uint8_t* str, uint8_t lenght);
 
 /**
  @brief function which receive data to uart

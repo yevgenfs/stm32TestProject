@@ -7,6 +7,8 @@
 #include "button_controler.h"
 #include <stdbool.h>
 
+#define BUTTON_TIMEOUT 100
+
 static bool    is_button_pass_timeout = false;
 
 void buttonEventsCb(button_event_t event)
@@ -45,7 +47,7 @@ e_button_controler_err_t button_controler_init(void)
         return e_button_controler_err_not_init;
     }
 
-    if(button_set_timeout(1000) != e_button_err_ok)
+    if(button_set_timeout(BUTTON_TIMEOUT) != e_button_err_ok)
     {
         return e_button_controler_err_not_init;
     }
