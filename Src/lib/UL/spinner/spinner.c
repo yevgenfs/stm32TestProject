@@ -4,8 +4,8 @@
  */
 
 #include "spinner.h"
-#include "../../utils/queue.h"
-#include "../../UL/uart_manager/uart_manager.h"
+#include "lib/utils/queue.h"
+#include "lib/UL/io/io_generic/io_generic.h"
 
 static obj_led_t led_arr[] =
 {
@@ -40,11 +40,8 @@ static obj_led_t led_arr[] =
 };
 
 static spinner_state_t spinner_state = e_spinner_state_run;
-static uint32_t        spinner_period_ms = 400;
+static uint32_t        spinner_period_ms = 2000;
 static queue_t         queue;
-
-
-
 
 e_spinner_err_t spinner_init(void)
 {
@@ -57,6 +54,17 @@ e_spinner_err_t spinner_init(void)
     {
         return e_spinner_err_not_init;
     }
+
+    led_num_t red    = e_led_num_1;
+    led_num_t green  = e_led_num_2;
+    led_num_t yellow = e_led_num_3;
+    led_num_t blue   = e_led_num_4;
+
+    spinner_insert_led(red);
+    spinner_insert_led(green);
+    spinner_insert_led(yellow);
+    spinner_insert_led(blue);
+
     return e_spinner_err_ok;
 }
 
@@ -109,6 +117,7 @@ e_spinner_err_t spinner_run(void)
     static int8_t         count                      = 0;
     static spinner_ctrl_t objL_item                  = {0};
 
+
     switch (spinner_state)
     {
         case e_spinner_state_pause:
@@ -126,7 +135,7 @@ e_spinner_err_t spinner_run(void)
                 if (led_arr[count].status != e_led_status_disable)
                 {
                     led_toggle(&led_arr[count]);
-                    send_to_uart(led_arr[count].num, led_arr[count].led_state);
+                    io_generic_send(led_arr[count].num, led_arr[count].led_state);
                 }
 
                 if (count++ >= e_led_num)

@@ -10,7 +10,7 @@
 #define DEBOUNCER_TIME_MS 50
 
 static button_t   button = {GPIOA, GPIO_PIN_5};
-static buttonCb_t objS_buttonCb ;
+static buttonCb_t objS_buttonCb;
 static uint32_t   pressed_time_ms = 0;
 static uint32_t   timeout = 0;
 

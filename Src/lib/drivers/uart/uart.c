@@ -41,13 +41,25 @@ e_uart_err_t uart_deinit(obj_uart_t* objP_this)
     return e_uart_err_ok;
 }
 
-e_uart_err_t uart_send(obj_uart_t* objPL_this, uint8_t* str)
+e_uart_err_t uart_send(obj_uart_t* objPL_this, uint8_t* str, uint8_t lenght)
 {
     if (objPL_this != NULL && str != NULL
             && objPL_this->uart_handler != NULL)
     {
         return (HAL_UART_Transmit_IT(objPL_this->uart_handler, str,
-                strlen(str)) == HAL_OK) ? e_uart_err_ok : e_uart_err_send_fail;
+                lenght) == HAL_OK) ? e_uart_err_ok : e_uart_err_send_fail;
     }
     return e_uart_err_send_fail;
 }
+
+e_uart_err_t uart_receive(obj_uart_t* objPL_this, uint8_t* message_buffer, uint8_t length)
+{
+    if (objPL_this != NULL  && objPL_this->uart_handler != NULL && length != 0)
+    {
+        return (HAL_UART_Receive_IT(objPL_this->uart_handler, message_buffer, length)
+                == HAL_OK) ? e_uart_err_ok : e_uart_err_receive_fail;
+    }
+    return e_uart_err_receive_fail;
+}
+
+

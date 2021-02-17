@@ -21,6 +21,7 @@ typedef enum
     e_uart_err_init_fail,
     e_uart_err_deinit_fail,
     e_uart_err_send_fail,
+    e_uart_err_receive_fail,
     e_uart_err_busy,
     e_uart_err_timeout,
 } e_uart_err_t;
@@ -39,7 +40,7 @@ typedef struct
  @param[in] objP_this instance of uart which should  init
 
  @return return type of error or ok if work correctly
- */
+*/
 e_uart_err_t uart_init(obj_uart_t* objP_this);
 
 /**
@@ -48,7 +49,7 @@ e_uart_err_t uart_init(obj_uart_t* objP_this);
  @param[in] objP_this instance of uart which should  deinit
 
  @return return type of error or ok if work correctly
- */
+*/
 e_uart_err_t uart_deinit(obj_uart_t* objP_this);
 
 /**
@@ -59,9 +60,21 @@ e_uart_err_t uart_deinit(obj_uart_t* objP_this);
  @param[in] str data which should be sent
 
  @return return type of error or ok if work correctly
- */
-e_uart_err_t uart_send(obj_uart_t* objPL_this, uint8_t* str);
+*/
+e_uart_err_t uart_send(obj_uart_t* objPL_this, uint8_t* str, uint8_t lenght);
 
+/**
+ @brief function which receive data to uart
+
+ @param[in] objP_this instance of uart which should  send data
+
+ @param[out] message_buffer data which receive
+
+ @param[in] length  of input data
+
+ @return return type of error or ok if work correctly
+*/
+e_uart_err_t uart_receive(obj_uart_t* objPL_this, uint8_t* message_buffer, uint8_t length);
 
 #ifdef __cplusplus
 }
