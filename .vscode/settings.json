@@ -1,0 +1,21 @@
+{
+    "cmake.generator": "MinGW Makefiles",
+    "cmake.configureEnvironment": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "on"
+    },
+    "cmake.configureSettings": {
+        "TOOLCHAIN_PREFIX": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\8 2018-q4-major",
+        "TARGET_TRIPLET":"arm-none-eabi",
+        "STM32_CHIP": "STM32F407VG",
+        "STM32Cube_DIR": "C:\\Users\\yevhen.surkov\\STM32Cube\\Repository\\STM32Cube_FW_F4_V1.25.1",
+        "STM32_LINKER_SCRIPT":"${workspaceFolder}\\Core\\src\\STM32F407VGTX_FLASH.ld"
+    },
+    "C_Cpp.default.intelliSenseMode": "gcc-arm",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "cmake.sourceDirectory": "${workspaceFolder}/.",
+    "files.associations": {
+        "cmsis_os.h": "c",
+        "main.h": "c"
+    }
+}
+

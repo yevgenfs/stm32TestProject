@@ -46,24 +46,24 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-led_blink.elf \
+stm32_spinner_project.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-led_blink.list \
+stm32_spinner_project.list \
 
 OBJCOPY_BIN += \
-led_blink.bin \
+stm32_spinner_project.bin \
 
 
 # All Target
-all: led_blink.elf secondary-outputs
+all: stm32_spinner_project.elf secondary-outputs
 
 # Tool invocations
-led_blink.elf: $(OBJS) $(USER_OBJS) C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\STM32F407VGTX_FLASH.ld
-	arm-none-eabi-gcc -o "led_blink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\led_blink\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="led_blink.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+stm32_spinner_project.elf: $(OBJS) $(USER_OBJS) C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project\STM32F407VGTX_FLASH.ld
+	arm-none-eabi-gcc -o "stm32_spinner_project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_spinner_project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -72,13 +72,13 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-led_blink.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "led_blink.list"
+stm32_spinner_project.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "stm32_spinner_project.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-led_blink.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "led_blink.bin"
+stm32_spinner_project.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "stm32_spinner_project.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
