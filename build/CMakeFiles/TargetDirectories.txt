@@ -1,3 +1,5 @@
-C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project-2/build/CMakeFiles/stm32_spinner_project-2.dir
-C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project-2/build/CMakeFiles/edit_cache.dir
-C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project-2/build/CMakeFiles/rebuild_cache.dir
+C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project/build/CMakeFiles/edit_cache.dir
+C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project/build/CMakeFiles/.lst.dir
+C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project/build/CMakeFiles/stm32_spinner_project.dir
+C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project/build/CMakeFiles/.bin.dir
+C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project/build/CMakeFiles/rebuild_cache.dir

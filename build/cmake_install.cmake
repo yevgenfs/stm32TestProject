@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project-2
+# Install script for directory: C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/stm32_spinner_project-2")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/stm32_spinner_project")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -29,12 +29,12 @@ endif()
 
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
-  set(CMAKE_CROSSCOMPILING "FALSE")
+  set(CMAKE_CROSSCOMPILING "TRUE")
 endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/MinGW/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Program Files (x86)/GNU Tools ARM Embedded/8 2018-q4-major/bin/arm-none-eabi-objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project-2/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/yevhen.surkov/Documents/STM_WORKPLACE/stm32_spinner_project/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

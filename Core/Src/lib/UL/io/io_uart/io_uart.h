@@ -17,6 +17,7 @@
 extern "C" {
 #endif
 
+
 /// @brief e_io_uart_err_t enum which express io_uart erorrs
 typedef enum
 {
