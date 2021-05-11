@@ -75,3 +75,4 @@ build/CMakeFiles/stm32_spinner_project.dir/link.txt
 build/Debug/stm32_spinner_project.bin
 build/CMakeFiles/stm32_spinner_project.dir/link.txt
 lib/STM32Cube_FW_F4_V1.25.1/Middlewares/ST/TouchGFX/installer/TouchGFX-4.10.0.msi
+build/*
