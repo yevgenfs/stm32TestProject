@@ -26,7 +26,7 @@
             "command": "st-flash",
             "args": [
                 "write",
-                "led_blink.elf",
+                "stm32-spinner_project.elf",
                 "0x08000000"
             ],
             "options": {
