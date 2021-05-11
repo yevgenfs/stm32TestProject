@@ -11,10 +11,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED true)
 
-# set(EXTERNAL_PROJECT_GENERATOR "MinGW Makefiles")
-# set(CMAKE_SH_NOT_FOUND "-DCMAKE_SH=CMAKE_SH-NOTFOUND")
-# set(EXTERNAL_PROJECT_COMPILER "-DCMAKE_C_COMPILER=gcc")
-
 # Build type
 set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE})
 
@@ -27,7 +23,7 @@ set(PRJ_DIR ${CMAKE_SOURCE_DIR}/lib/STM32Cube_FW_F4_V1.25.1)
 set(STARTUP ${PRJ_DIR}/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s)
 message (STATUS "[DBG]: ${STARTUP}")
 
-# set system file for µController
+# set system file for Controller
 set(SYSTEM ${PRJ_DIR}/Projects/STM32F4-Discovery/Examples/GPIO/GPIO_EXTI/Src/system_stm32f4xx.c)
 
 # set paths
@@ -107,6 +103,7 @@ set(EXECUTABLE ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME})
 
 add_executable(${PROJECT_NAME} ${APP_SRCS} ${HAL_SRCS} ${CMSIS_SRCS} ${BSP_SRCS} ${STARTUP} ${SOURCE_ESP})
 
+#add target device
 target_compile_definitions(${PROJECT_NAME} PRIVATE
   -DSTM32F407x32
   $<$<CONFIG:Debug>: -DDEBUG>
@@ -142,6 +139,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
   
 )
 
+#add settings for target device
 target_compile_options(${PROJECT_NAME} PRIVATE
   -mcpu=cortex-m4
   -mthumb
@@ -165,7 +163,7 @@ target_link_options(${PROJECT_NAME} PRIVATE
   -mcpu=cortex-m4
   -mthumb
   -mfloat-abi=hard
-#  -u _printf_float
+  -u _printf_float
 
   --specs=nano.specs
   --specs=nosys.specs
@@ -185,11 +183,7 @@ set_property(SOURCE ${STARTUP} PROPERTY LANGUAGE C)
 SET(USER_SOURCES ${STARTUP} ${SYSTEM} ${CMSIS_SRCS} ${HAL_SRCS} ${BSP_SRCS} ${APP_SRCS} ${LINKER_SCRIPT})
 message(STATUS "[DBG]: ${USER_SOURCES}")
 
-# 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${TARGET}.map")
-
-# # create an *.elf output file
-# add_executable(${TARGET}.elf ${USER_SOURCES})
 
 # create possibility to create a *.bin file
 add_custom_target (${TARGET}.bin DEPENDS ${TARGET}.elf COMMAND ${CMAKE_OBJCOPY} -O binary ${TARGET}.elf ${TARGET}.bin)
