@@ -49,33 +49,19 @@ set(CMSIS_SRCS
 # set HAL files needed for the project
 set(HAL_SRCS
   ${HAL_PATH}/Src/stm32f4xx_hal_pwr.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_pwr.h
   ${HAL_PATH}/Src/stm32f4xx_hal_cortex.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_cortex.h
   ${HAL_PATH}/Src/stm32f4xx_hal_gpio.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_gpio.h
   ${HAL_PATH}/Src/stm32f4xx_hal_flash.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_flash.h
   ${HAL_PATH}/Src/stm32f4xx_hal_spi.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_spi.h
   ${HAL_PATH}/Src/stm32f4xx_hal_rcc.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_rcc.h
   ${HAL_PATH}/Src/stm32f4xx_hal_flash_ex.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_flash_ex.h
   ${HAL_PATH}/Src/stm32f4xx_hal_rcc_ex.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_rcc_ex.h
   ${HAL_PATH}/Src/stm32f4xx_hal_i2c.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_i2c.h
   ${HAL_PATH}/Src/stm32f4xx_hal.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal.h
   ${HAL_PATH}/Src/stm32f4xx_hal_pwr_ex.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_pwr_ex.h
   ${HAL_PATH}/Src/stm32f4xx_hal_dma.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_dma.h
   ${HAL_PATH}/Src/stm32f4xx_hal_i2c_ex.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_i2c_ex.h
   ${HAL_PATH}/Src/stm32f4xx_hal_uart.c
-  ${HAL_PATH}/Inc/stm32f4xx_hal_uart.h
 )
 
 # set BSP files needed for the project
@@ -93,15 +79,18 @@ ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
 ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_hal_msp.c
 ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
 ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
-${CMAKE_SOURCE_DIR}/Core/Inc/main.h
-${CMAKE_SOURCE_DIR}/Core/Inc/stm32f4xx_hal_conf.h
-${CMAKE_SOURCE_DIR}/Core/Inc/stm32f4xx_it.h
 )
+
+SET(INCLUDE_DIRS 
+${CMAKE_SOURCE_DIR}/Core/Inc/
+${HAL_PATH}/Inc/
+)
+
 message (STATUS "[DBG]: ${APP_SRCS}")
 
 set(EXECUTABLE ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME})
 
-add_executable(${PROJECT_NAME} ${APP_SRCS} ${HAL_SRCS} ${CMSIS_SRCS} ${BSP_SRCS} ${STARTUP} ${SOURCE_ESP})
+add_executable(${PROJECT_NAME} ${INCLUDE_DIRS} ${APP_SRCS} ${HAL_SRCS} ${CMSIS_SRCS} ${BSP_SRCS} ${STARTUP} ${SOURCE_ESP})
 
 #add target device
 target_compile_definitions(${PROJECT_NAME} PRIVATE
