@@ -56,3 +56,5 @@ dkms.conf
 *.css
 lib/STM32Cube_FW_F4_V1.25.1/Middlewares/ST/TouchGFX/installer/TouchGFX-4.10.0.msi
 build/*
+build/CMakeFiles/*
+build/Debug/*
