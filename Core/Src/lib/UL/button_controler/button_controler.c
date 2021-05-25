@@ -5,6 +5,7 @@
  *      Author: yevhen.surkov
  */
 #include "button_controler.h"
+#include "../spinner/spinner.h"
 #include <stdbool.h>
 
 #define BUTTON_TIMEOUT 100
@@ -63,4 +64,5 @@ e_button_controler_err_t button_controler_run(void)
         ms_from_last_button_read = HAL_GetTick();
         button_run();
     }
+    return e_button_controler_err_ok;
 }
