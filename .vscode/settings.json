@@ -17,8 +17,6 @@
         "cmsis_os.h": "c",
         "main.h": "c",
         "stm32f4xx_hal_flash_ex.h": "c",
-        "spinner.h": "c",
-        "button_controler.h": "c"
     }
 }
 

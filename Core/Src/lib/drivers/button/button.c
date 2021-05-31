@@ -4,14 +4,14 @@
  *  Created on: 13 лист. 2020 р.
  *      Author: yevhen.surkov
  */
-#include "button.h";
+#include "button.h"
 #define MIN_PRESSED_TIME_BORDER_MS 0
 #define MAX_PRESSED_TIME_BORDER_MS 32000
 #define DEBOUNCER_TIME_MS 50
 
-static button_t   button = {GPIOA, GPIO_PIN_5};
+static button_t   button = {GPIOD, GPIO_PIN_15};
 static buttonCb_t objS_buttonCb;
-static uint32_t   pressed_time_ms = 0;
+volatile static uint32_t   pressed_time_ms = 0;
 static uint32_t   timeout = 0;
 
 
@@ -22,8 +22,8 @@ button_err_t button_init(void)
     //  init
     GPIO_InitStruct.Pin = button.pin;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
     return e_button_err_ok;
 }

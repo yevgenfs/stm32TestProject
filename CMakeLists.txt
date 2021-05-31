@@ -30,6 +30,7 @@ set(SYSTEM ${PRJ_DIR}/Projects/STM32F4-Discovery/Examples/GPIO/GPIO_EXTI/Src/sys
 set(HAL_PATH ${PRJ_DIR}/Drivers/STM32F4xx_HAL_Driver)
 set(CMSIS_PATH ${PRJ_DIR}/Drivers/CMSIS)
 set(BSP_PATH ${PRJ_DIR}/Drivers/BSP)
+set(FREE_RTOS_PATH ${CMAKE_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source)
     
 
 #add_executable(stm32_spinner_project-2 Core/Src/main.c)
@@ -73,24 +74,68 @@ message (STATUS "[DBG]: ${BSP_SRCS}")
 
 # set Application files needed for the project
 SET (APP_SRCS
+${CMAKE_SOURCE_DIR}/Core/Src/freertos.c
 ${CMAKE_SOURCE_DIR}/Core/Src/main.c
 ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_it.c
 ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
 ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_hal_msp.c
 ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
 ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
+${CMAKE_SOURCE_DIR}/Core/Inc/FreeRTOSConfig.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/drivers/uart/uart.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/drivers/uart/uart.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/drivers/led/led.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/drivers/led/led.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/drivers/button/button.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/drivers/button/button.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/utils/queue.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/utils/queue.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/spinner/spinner.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/spinner/spinner.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/button_controler/button_controler.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/button_controler/button_controler.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_config/io_config.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_config/io_config.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_package_convertor/io_package_convertor.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_package_convertor/io_package_convertor.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_generic/io_generic.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_generic/io_generic.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_uart/io_uart.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_uart/io_uart.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_spi/io_spi.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_spi/io_spi.c
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_i2c/io_i2c.h
+${CMAKE_SOURCE_DIR}/Core/Src/lib/UL/io/io_i2c/io_i2c.c
+)
+
+# set FreeRtos files needed for the project
+SET (FREE_RTOS_SRCS
+${FREE_RTOS_PATH}/CMSIS_RTOS_V2/cmsis_os.h
+${FREE_RTOS_PATH}/CMSIS_RTOS_V2/cmsis_os2.h
+${FREE_RTOS_PATH}/CMSIS_RTOS_V2/cmsis_os2.c
+${FREE_RTOS_PATH}/portable/GCC/ARM_CM4F/portmacro.h
+${FREE_RTOS_PATH}/portable/GCC/ARM_CM4F/port.c
+${FREE_RTOS_PATH}/portable/MemMang/heap_4.c
+${FREE_RTOS_PATH}/croutine.c
+${FREE_RTOS_PATH}/event_groups.c
+${FREE_RTOS_PATH}/list.c
+${FREE_RTOS_PATH}/queue.c
+${FREE_RTOS_PATH}/stream_buffer.c
+${FREE_RTOS_PATH}/tasks.c
+${FREE_RTOS_PATH}/timers.c
 )
 
 SET(INCLUDE_DIRS 
 ${CMAKE_SOURCE_DIR}/Core/Inc/
 ${HAL_PATH}/Inc/
+${FREE_RTOS_PATH}/Include/
 )
 
 message (STATUS "[DBG]: ${APP_SRCS}")
 
 set(EXECUTABLE ${EXECUTABLE_OUTPUT_PATH}/${PROJECT_NAME})
 
-add_executable(${PROJECT_NAME} ${INCLUDE_DIRS} ${APP_SRCS} ${HAL_SRCS} ${CMSIS_SRCS} ${BSP_SRCS} ${STARTUP} ${SOURCE_ESP})
+add_executable(${PROJECT_NAME} ${INCLUDE_DIRS} ${APP_SRCS} ${HAL_SRCS} ${CMSIS_SRCS} ${BSP_SRCS} ${FREE_RTOS_SRCS} ${STARTUP} ${SOURCE_ESP})
 
 #add target device
 target_compile_definitions(${PROJECT_NAME} PRIVATE
@@ -109,6 +154,9 @@ include_directories (
   ${HAL_PATH}/Inc/Legacy
   ${CMSIS_PATH}/Core/Include
   ${CMSIS_PATH}/Device/ST/STM32F4xx/Include
+  ${FREE_RTOS_PATH}/Include/
+  ${FREE_RTOS_PATH}/CMSIS_RTOS_V2/
+  ${FREE_RTOS_PATH}/portable/GCC/ARM_CM4F/
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
