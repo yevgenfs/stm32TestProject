@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_GENERATOR "MinGW Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+  "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeASMInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeCInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeCXXInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -14,26 +15,20 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeGenericSystem.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeInitializeConfigs.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeLanguageInformation.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeRCInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeSystemSpecificInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/CMakeSystemSpecificInitialize.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+  "C:/Program Files/CMake/share/cmake-3.18/Modules/Compiler/GNU-ASM.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/Compiler/GNU-C.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/Compiler/GNU-CXX.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/Compiler/GNU.cmake"
   "C:/Program Files/CMake/share/cmake-3.18/Modules/Internal/CMakeCheckCompilerFlag.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/Windows-GNU-C-ABI.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/Windows-GNU-C.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/Windows-GNU-CXX-ABI.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/Windows-GNU-CXX.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/Windows-GNU.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/Windows-windres.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/Windows.cmake"
-  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/WindowsPaths.cmake"
+  "C:/Program Files/CMake/share/cmake-3.18/Modules/Platform/Generic.cmake"
   "../CMakeLists.txt"
+  "../arm-none-eabi-gcc.cmake"
+  "CMakeFiles/3.18.4/CMakeASMCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeCCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeCXXCompiler.cmake"
-  "CMakeFiles/3.18.4/CMakeRCCompiler.cmake"
   "CMakeFiles/3.18.4/CMakeSystem.cmake"
   )
 
@@ -50,5 +45,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/stm32_spinner_project-2.dir/DependInfo.cmake"
+  "CMakeFiles/.lst.dir/DependInfo.cmake"
+  "CMakeFiles/stm32_spinner_project.dir/DependInfo.cmake"
+  "CMakeFiles/.bin.dir/DependInfo.cmake"
   )

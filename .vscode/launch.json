@@ -6,7 +6,7 @@
             "type": "cortex-debug",
             "request": "launch",
             "cwd": "${workspaceRoot}/build",
-            "executable": "C:\\Users\\yevhen.surkov\\Documents\\STM_WORKPLACE\\stm32_spinner_project-2\\build\\stm32_spinner_project-2.elf",
+            "executable": "${workspaceRoot}\\build\\Debug\\stm32_spinner_project.elf",
             "servertype": "openocd",
             "interface": "swd",
             "device": "STM32F407VG",

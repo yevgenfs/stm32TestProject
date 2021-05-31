@@ -6,11 +6,10 @@
 #define SRC_LIB_UL_SPINNER_H_
 
 /// @file stm32f4xx_hal.h - Library that give access to the stm HAL level.
-#include "stm32f4xx_hal.h"
-
 #include "main.h"
 #include "lib/drivers/led/led.h"
-
+#include "FreeRTOS.h"
+#include "queue.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -54,7 +53,7 @@ typedef enum
 
  @return return type of error or ok if work correctly
  */
-e_spinner_err_t spinner_init(void);
+e_spinner_err_t spinner_init(xQueueHandle* spinner_queue_handle);
 
 /**
  @brief function which deinit spinner

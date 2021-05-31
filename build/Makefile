@@ -66,10 +66,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project-2
+CMAKE_SOURCE_DIR = C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project-2\build
+CMAKE_BINARY_DIR = C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -98,9 +98,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project-2\build\CMakeFiles C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project-2\build\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project\build\CMakeFiles C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project\build\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project-2\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\yevhen.surkov\Documents\STM_WORKPLACE\stm32_spinner_project\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,17 +129,43 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named stm32_spinner_project-2
+# Target rules for targets named .lst
 
 # Build rule for target.
-stm32_spinner_project-2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 stm32_spinner_project-2
-.PHONY : stm32_spinner_project-2
+.lst: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 .lst
+.PHONY : .lst
 
 # fast build rule for target.
-stm32_spinner_project-2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project-2.dir\build.make CMakeFiles/stm32_spinner_project-2.dir/build
-.PHONY : stm32_spinner_project-2/fast
+.lst/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\.lst.dir\build.make CMakeFiles/.lst.dir/build
+.PHONY : .lst/fast
+
+#=============================================================================
+# Target rules for targets named stm32_spinner_project
+
+# Build rule for target.
+stm32_spinner_project: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 stm32_spinner_project
+.PHONY : stm32_spinner_project
+
+# fast build rule for target.
+stm32_spinner_project/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/build
+.PHONY : stm32_spinner_project/fast
+
+#=============================================================================
+# Target rules for targets named .bin
+
+# Build rule for target.
+.bin: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 .bin
+.PHONY : .bin
+
+# fast build rule for target.
+.bin/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\.bin.dir\build.make CMakeFiles/.bin.dir/build
+.PHONY : .bin/fast
 
 Core/Src/main.obj: Core/Src/main.c.obj
 
@@ -147,7 +173,7 @@ Core/Src/main.obj: Core/Src/main.c.obj
 
 # target to build an object file
 Core/Src/main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project-2.dir\build.make CMakeFiles/stm32_spinner_project-2.dir/Core/Src/main.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/main.c.obj
 .PHONY : Core/Src/main.c.obj
 
 Core/Src/main.i: Core/Src/main.c.i
@@ -156,7 +182,7 @@ Core/Src/main.i: Core/Src/main.c.i
 
 # target to preprocess a source file
 Core/Src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project-2.dir\build.make CMakeFiles/stm32_spinner_project-2.dir/Core/Src/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/main.c.i
 .PHONY : Core/Src/main.c.i
 
 Core/Src/main.s: Core/Src/main.c.s
@@ -165,8 +191,575 @@ Core/Src/main.s: Core/Src/main.c.s
 
 # target to generate assembly for a file
 Core/Src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project-2.dir\build.make CMakeFiles/stm32_spinner_project-2.dir/Core/Src/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/main.c.s
 .PHONY : Core/Src/main.c.s
+
+Core/Src/stm32f4xx_hal_msp.obj: Core/Src/stm32f4xx_hal_msp.c.obj
+
+.PHONY : Core/Src/stm32f4xx_hal_msp.obj
+
+# target to build an object file
+Core/Src/stm32f4xx_hal_msp.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/stm32f4xx_hal_msp.c.obj
+.PHONY : Core/Src/stm32f4xx_hal_msp.c.obj
+
+Core/Src/stm32f4xx_hal_msp.i: Core/Src/stm32f4xx_hal_msp.c.i
+
+.PHONY : Core/Src/stm32f4xx_hal_msp.i
+
+# target to preprocess a source file
+Core/Src/stm32f4xx_hal_msp.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/stm32f4xx_hal_msp.c.i
+.PHONY : Core/Src/stm32f4xx_hal_msp.c.i
+
+Core/Src/stm32f4xx_hal_msp.s: Core/Src/stm32f4xx_hal_msp.c.s
+
+.PHONY : Core/Src/stm32f4xx_hal_msp.s
+
+# target to generate assembly for a file
+Core/Src/stm32f4xx_hal_msp.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/stm32f4xx_hal_msp.c.s
+.PHONY : Core/Src/stm32f4xx_hal_msp.c.s
+
+Core/Src/stm32f4xx_it.obj: Core/Src/stm32f4xx_it.c.obj
+
+.PHONY : Core/Src/stm32f4xx_it.obj
+
+# target to build an object file
+Core/Src/stm32f4xx_it.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/stm32f4xx_it.c.obj
+.PHONY : Core/Src/stm32f4xx_it.c.obj
+
+Core/Src/stm32f4xx_it.i: Core/Src/stm32f4xx_it.c.i
+
+.PHONY : Core/Src/stm32f4xx_it.i
+
+# target to preprocess a source file
+Core/Src/stm32f4xx_it.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/stm32f4xx_it.c.i
+.PHONY : Core/Src/stm32f4xx_it.c.i
+
+Core/Src/stm32f4xx_it.s: Core/Src/stm32f4xx_it.c.s
+
+.PHONY : Core/Src/stm32f4xx_it.s
+
+# target to generate assembly for a file
+Core/Src/stm32f4xx_it.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/stm32f4xx_it.c.s
+.PHONY : Core/Src/stm32f4xx_it.c.s
+
+Core/Src/syscalls.obj: Core/Src/syscalls.c.obj
+
+.PHONY : Core/Src/syscalls.obj
+
+# target to build an object file
+Core/Src/syscalls.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/syscalls.c.obj
+.PHONY : Core/Src/syscalls.c.obj
+
+Core/Src/syscalls.i: Core/Src/syscalls.c.i
+
+.PHONY : Core/Src/syscalls.i
+
+# target to preprocess a source file
+Core/Src/syscalls.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/syscalls.c.i
+.PHONY : Core/Src/syscalls.c.i
+
+Core/Src/syscalls.s: Core/Src/syscalls.c.s
+
+.PHONY : Core/Src/syscalls.s
+
+# target to generate assembly for a file
+Core/Src/syscalls.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/syscalls.c.s
+.PHONY : Core/Src/syscalls.c.s
+
+Core/Src/sysmem.obj: Core/Src/sysmem.c.obj
+
+.PHONY : Core/Src/sysmem.obj
+
+# target to build an object file
+Core/Src/sysmem.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/sysmem.c.obj
+.PHONY : Core/Src/sysmem.c.obj
+
+Core/Src/sysmem.i: Core/Src/sysmem.c.i
+
+.PHONY : Core/Src/sysmem.i
+
+# target to preprocess a source file
+Core/Src/sysmem.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/sysmem.c.i
+.PHONY : Core/Src/sysmem.c.i
+
+Core/Src/sysmem.s: Core/Src/sysmem.c.s
+
+.PHONY : Core/Src/sysmem.s
+
+# target to generate assembly for a file
+Core/Src/sysmem.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/sysmem.c.s
+.PHONY : Core/Src/sysmem.c.s
+
+Core/Src/system_stm32f4xx.obj: Core/Src/system_stm32f4xx.c.obj
+
+.PHONY : Core/Src/system_stm32f4xx.obj
+
+# target to build an object file
+Core/Src/system_stm32f4xx.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/system_stm32f4xx.c.obj
+.PHONY : Core/Src/system_stm32f4xx.c.obj
+
+Core/Src/system_stm32f4xx.i: Core/Src/system_stm32f4xx.c.i
+
+.PHONY : Core/Src/system_stm32f4xx.i
+
+# target to preprocess a source file
+Core/Src/system_stm32f4xx.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/system_stm32f4xx.c.i
+.PHONY : Core/Src/system_stm32f4xx.c.i
+
+Core/Src/system_stm32f4xx.s: Core/Src/system_stm32f4xx.c.s
+
+.PHONY : Core/Src/system_stm32f4xx.s
+
+# target to generate assembly for a file
+Core/Src/system_stm32f4xx.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/Core/Src/system_stm32f4xx.c.s
+.PHONY : Core/Src/system_stm32f4xx.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.s
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.obj: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.obj
+
+# target to build an object file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.i: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.i
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.i
+
+# target to preprocess a source file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.i
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.i
+
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.s: lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.s
+
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.s
+
+# target to generate assembly for a file
+lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\stm32_spinner_project.dir\build.make CMakeFiles/stm32_spinner_project.dir/lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.s
+.PHONY : lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.s
 
 # Help Target
 help:
@@ -176,10 +769,75 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... stm32_spinner_project-2
+	@echo ... .bin
+	@echo ... .lst
+	@echo ... stm32_spinner_project
 	@echo ... Core/Src/main.obj
 	@echo ... Core/Src/main.i
 	@echo ... Core/Src/main.s
+	@echo ... Core/Src/stm32f4xx_hal_msp.obj
+	@echo ... Core/Src/stm32f4xx_hal_msp.i
+	@echo ... Core/Src/stm32f4xx_hal_msp.s
+	@echo ... Core/Src/stm32f4xx_it.obj
+	@echo ... Core/Src/stm32f4xx_it.i
+	@echo ... Core/Src/stm32f4xx_it.s
+	@echo ... Core/Src/syscalls.obj
+	@echo ... Core/Src/syscalls.i
+	@echo ... Core/Src/syscalls.s
+	@echo ... Core/Src/sysmem.obj
+	@echo ... Core/Src/sysmem.i
+	@echo ... Core/Src/sysmem.s
+	@echo ... Core/Src/system_stm32f4xx.obj
+	@echo ... Core/Src/system_stm32f4xx.i
+	@echo ... Core/Src/system_stm32f4xx.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/BSP/STM32F4-Discovery/stm32f4_discovery.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f407xx.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.s
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.obj
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.i
+	@echo ... lib/STM32Cube_FW_F4_V1.25.1/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.s
 .PHONY : help
 
 

@@ -7,6 +7,8 @@
 #include "lib/utils/queue.h"
 #include "lib/UL/io/io_generic/io_generic.h"
 
+static xQueueHandle* spinner_queue;
+
 static obj_led_t led_arr[] =
 {
         {
@@ -40,11 +42,14 @@ static obj_led_t led_arr[] =
 };
 
 static spinner_state_t spinner_state = e_spinner_state_run;
-static uint32_t        spinner_period_ms = 2000;
 static queue_t         queue;
 
-e_spinner_err_t spinner_init(void)
+e_spinner_err_t spinner_init(xQueueHandle* spinner_queue_handle)
 {
+    if(spinner_queue_handle == NULL)
+    {
+        return e_spinner_err_not_init;
+    }
     if(led_init() != e_led_err_ok)
     {
         return e_spinner_err_not_init;
@@ -64,6 +69,8 @@ e_spinner_err_t spinner_init(void)
     spinner_insert_led(green);
     spinner_insert_led(yellow);
     spinner_insert_led(blue);
+
+    spinner_queue = spinner_queue_handle;
 
     return e_spinner_err_ok;
 }
@@ -105,7 +112,7 @@ e_spinner_err_t set_spinner_period_ms(uint32_t period)
 {
     if(period > 0)
     {
-        spinner_period_ms = period;
+        xQueueSend(*spinner_queue, &period, 0);
         return e_spinner_err_ok;
     }
     return e_spinner_err_invalid_argument;
@@ -113,10 +120,8 @@ e_spinner_err_t set_spinner_period_ms(uint32_t period)
 
 e_spinner_err_t spinner_run(void)
 {
-    static uint32_t       ms_from_last_led_operation = 0;
     static int8_t         count                      = 0;
     static spinner_ctrl_t objL_item                  = {0};
-
 
     switch (spinner_state)
     {
@@ -129,9 +134,8 @@ e_spinner_err_t spinner_run(void)
                 spinner_state = e_spinner_state_process_cmd;
             }
 
-            if(spinner_state == e_spinner_state_run  && ((HAL_GetTick() - ms_from_last_led_operation) > spinner_period_ms))
+            if(spinner_state == e_spinner_state_run)
             {
-                ms_from_last_led_operation = HAL_GetTick();
                 if (led_arr[count].status != e_led_status_disable)
                 {
                     led_toggle(&led_arr[count]);
