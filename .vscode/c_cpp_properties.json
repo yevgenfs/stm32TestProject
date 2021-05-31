@@ -1,0 +1,18 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Linux-arm-cross-platform",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\Users\\yevhen.surkov\\STM32Cube\\Repository\\STM32Cube_FW_F4_V1.25.1/**"
+            ],
+            "defines": ["STM32F407VG","USE_HAL_DRIVER"],
+            "compilerPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\8 2018-q4-major\\bin\\arm-none-eabi-g++",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "gcc-arm",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ]    
+}

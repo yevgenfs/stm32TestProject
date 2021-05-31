@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cortex-debug",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}/build",
+            "executable": "${workspaceRoot}\\build\\Debug\\stm32_spinner_project.elf",
+            "servertype": "openocd",
+            "interface": "swd",
+            "device": "STM32F407VG",
+            "runToMain": true,
+            "preRestartCommands": [
+                "target remote localhost:3333",
+                "add-symbol-file ${workspaceFolderBasename}",
+                "enable breakpoint",
+                "monitor reset"
+            ],
+            "armToolchainPath": "C:\\Program Files (x86)\\GNU Tools ARM Embedded\\8 2018-q4-major\\bin",
+            "configFiles": ["C:\\Users\\yevhen.surkov\\Documents\\OpenOCD-20210301-0.10.0\\share\\openocd\\scripts\\board\\stm32f4discovery.cfg"],
+            "searchDir":["C:\\Users\\yevhen.surkov\\Documents\\OpenOCD-20210301-0.10.0\\share\\openocd\\scripts\\board"],
+            "svdFile": "${workspaceFolder}/STM32F407.svd",
+            "preLaunchTask": "Build"
+        }
+    ]
+}
